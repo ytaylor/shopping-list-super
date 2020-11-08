@@ -3,7 +3,7 @@
 class Supermercado
 {
     /* Devuelve la informacion de los supermercados */
-    function getDataPedido(){
+    function getSupermercados(){
         $sql = "SELECT * FROM supermercado";
         //obtenemos el array de pedidos
         $tool = new Tools();
