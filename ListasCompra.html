@@ -61,14 +61,14 @@
         <!-- Elementos a gestionar -->
   
          <!-- Nav Item - Lista de la compra -->
-      <li class="nav-item">
-        <a class="nav-link" href="ListasCompra.html">
+      <li class="nav-item active">
+        <a class="nav-link" href="">
           <i class="fas fa-tasks"></i>
           <span>Listas de la Compra</span></a>
       </li>
   
        <!-- Nav Item - Supermercado -->
-       <li class="nav-item active">
+       <li class="nav-item ">
         <a class="nav-link" href="Supermercados.html">
           <i class="fas fa-store"></i>
           <span>Supermercados</span></a>
@@ -297,8 +297,8 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Supermercados</h1>
-          <p class="mb-4">Aquí puede adicionar, modificar y/o eliminar supermercados</p>
+          <h1 class="h3 mb-2 text-gray-800">Listas de la compra</h1>
+          <p class="mb-4">Aquí puede adicionar, modificar y/o eliminar listas de la compra</p>
 
         <div class="row justify-content-end mb-2 mr-1">
             <div class="col-xs-1 mr-1">
@@ -310,7 +310,7 @@
                 </a>
            </div>
             <div class="col-xs-1">
-                <a title="Adicionar supermercado" href="AgregarSupermercado.html" class="btn btn-primary btn-icon-split btn-sm">
+                <a title="Adicionar lista de compra" href="AgregarListaCompra.html" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                     </span>
@@ -322,7 +322,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Lista de supermercados</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Listas de compra</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -331,77 +331,39 @@
                     <tr>
                       <th>Id.</th>
                       <th>Nombre</th>
-                      <th>Dirección</th>
-                      <th>Provincia</th>
-                      <th>Código Postal</th>
-                      <th>Latitud</th>
-                      <th>Longitud</th>
-                      <th>Cadena</th>
+                    
+                      <th>Precio</th>
+                      <th>Nombre Usuario</th>
+                   
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                         <th>Id.</th>
                         <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Provincia</th>
-                        <th>Código Postal</th>
-                        <th>Latitud</th>
-                        <th>Longitud</th>
-                        <th>Cadena</th>
+                      
+                        <th>Precio</th>
+                        <th>Nombre Usuario</th>
+                   
                     </tr>
                   </tfoot>
                   <tbody id="mitbody">
                     <tr>
                       <td>1</td>
-                      <td>Almacen 1</td>
-                      <td>Dirección 1</td>
-                      <td>A Coruña</td>
-                      <td>15660</td>
+                      <td>Lista 1</td>
+                    
                       <td>672</td>
-                      <td>672</td>
-                      <td>Gadis</td>
+                     
+                      <td>Betty</td>
                       
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Almacen 2</td>
-                        <td>Dirección 2</td>
-                        <td>Valencia</td>
-                        <td>15660</td>
-                        <td>672</td>
-                        <td>672</td>
-                        <td>Eroski</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Almacen 3</td>
-                        <td>Dirección 3</td>
-                        <td>Valladolid</td>
-                        <td>15660</td>
-                        <td>672</td>
-                        <td>672</td>
-                        <td>Gadis</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Almacen 4</td>
-                        <td>Dirección 4</td>
-                        <td>A Coruña</td>
-                        <td>15660</td>
-                        <td>672</td>
-                        <td>672</td>
-                        <td>Eroski</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Almacen 5</td>
-                        <td>Dirección 5</td>
-                        <td>Madrid</td>
-                        <td>15660</td>
-                        <td>672</td>
-                        <td>672</td>
-                        <td>Gadis</td>
+                        <td>Lista 2</td>
+                        
+                        <td>500</td>
+                       
+                        <td>Yanelis</td>
                     </tr>
                    
                    
@@ -467,7 +429,7 @@
         <h6 class="modal-title">Confimar eliminación</h6>
       </div>
       <div class="modal-body">
-           ¿Seguro que desea eliminar el supermercado?
+           ¿Seguro que desea eliminar la lista?
            <button id="boton_modal" type="button"class="btn btn-sm">Si</button>
            <button type="button"class="btn btn-sm" data-dismiss="modal">No</button>
       </div>
@@ -484,7 +446,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title"> Editar Supermercado</h6>
+        <h6 class="modal-title"> Editar Lista de la compra</h6>
         <button type="button"class="btn btn-lg" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
@@ -606,7 +568,6 @@
     </div>
 
   </div>
-</div>
 
   <!--Scripts personalizados-->
   
@@ -629,6 +590,7 @@
          for (let index = 0; index < fila.children.length; index++) {
              if(fila.children[index]==fila.lastElementChild)
              {
+                fila.innerHTML+='<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Ver" onclick=verElemento(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-eye"></i></a></td>';
                 
                 fila.innerHTML+='<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Editar" onclick=editarElemento(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-edit"></i></a></td>';
                 fila.innerHTML+= '<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Eliminar" onclick=eliminarElemento(this) class="btn btn-primary btn-circle btn-sm"><i class="fas fa-trash"></i></a></td>';
