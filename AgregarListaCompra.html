@@ -85,7 +85,7 @@
   
         <!-- Nav Item - Productos -->
        <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="Productos.html">
           <i class="fas fa-fw fa-cubes"></i>
           <span>Productos</span></a>
       </li>
@@ -329,12 +329,12 @@
                 <form>
                     <div class="form-row ">
                       <div class="form-group col-md-6">
-                        <label for="nombre_mercado">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_mercado" required>
+                        <label for="nombre_lista">Nombre</label>
+                        <input type="text" class="form-control" id="nombre_lista" required>
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="provincia_mercado">Supermercado</label>
-                        <select id="provincia_mercado" class="form-control">
+                        <label for="select_mercado">Supermercado</label>
+                        <select id="select_mercado" class="form-control" onchange="cargarProductos()">
 
                             <option >---Seleccione un supermercado---</option>
                             <!-- LLAMADA A BASE DE DATOS PARA LLENAR LOS OPTIONS-->
@@ -352,7 +352,7 @@
                         </div>
                         <div class="card-body">
                           <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table id="tabla_productos_disponibles" class="table table-bordered"  width="100%" cellspacing="0">
                               <thead>
                                 <tr>
                                   <th>Id.</th>
@@ -421,7 +421,7 @@
                             </div>
 
                           <div class="table-responsive">
-                            <table id="tabla_productos_compra" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table id="tabla_productos_compra" class="table table-bordered"  width="100%" cellspacing="0">
                               <thead>
                                 <tr>
                                   <th>Id.</th>
@@ -529,6 +529,22 @@
 </div>
 
    <!--Scripts personalizados-->
+
+   <script>
+
+    //FUNCION LLENAR LA TABLA DE PRODUCTOS DISPONIBLES DEL SUPERMERCADO SELECCIONADO
+  
+    function cargarProductos(){
+  
+      
+      //LLAMAR AL METODO DE LA BD PARA MOSTRAR LOS RESULTADOS, pasar por parámetro el super seleccionado del select con id: select_mercado
+      //LLENAR EL CONTENIDO resultante EN la tabla de tbody: mitbody
+      
+   
+  
+  }
+  
+  </script>
   
    <script>
 
@@ -565,18 +581,59 @@
 
 <script>
 
+precio_total=document.getElementById("precio_total_lista");
+
 //DESARROLLAR LA FUNCION PARA AGREGAR EL PRODUCTO A LA TABLA LISTA DE COMPRA TENER EN CUENTA CADA VEZ QUE AGREGUE UNO INCREMENTAR EL TOTAL
 //CAMPO TOTAL: precio_total_lista
 
 function agregarProducto(td){
 
-    fila=td.closest("tr");
-     fila.removeChild(document.getElementById("celda_agregar_producto"));
-     fila.innerHTML+='<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Eliminar" onclick=eliminarrProducto(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-trash"></i></a></td>';
-    document.getElementById("tabla_productos_compra").appendChild(fila)
+   var fila=td.closest("tr");
+   console.log(fila)
+
+  console.log(fila.cells);
+  precio_total.innerHTML= Number(Number(Number(Number(precio_total.innerHTML).toFixed(2))+Number(fila.cells[3].innerHTML))).toFixed(2);
+  
+   console.log(precio_total);
+
+   var td_agregar=fila.lastElementChild;
+      console.log(td_agregar)
+     fila.removeChild(td_agregar);
+     var celda=document.createElement("td");
+     celda.innerHTML='<td id="celda_eliminar_producto" style="text-align:center; padding-left:0; padding-right:0;"><a title="Eliminar" onclick=eliminarProducto(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-trash"></i></a></td>';
+     fila.appendChild(celda)
+    document.getElementById("mitbodylista").appendChild(fila)
+    console.log(document.getElementById("tabla_productos_compra"));
 }
 
 </script>
+
+<script>
+
+  //DESARROLLAR LA FUNCION PARA Eliminar EL PRODUCTO DE LA TABLA LISTA DE COMPRA TENER EN CUENTA CADA VEZ QUE ELIMINE UNO Decremento EL TOTAL
+  //CAMPO TOTAL: precio_total_lista
+  
+  function eliminarProducto(td){
+  
+      var fila_eliminar=td.closest("tr");
+      console.log(fila_eliminar)
+
+      console.log(fila_eliminar.cells);
+  precio_total.innerHTML= Number(Number(Number(Number(precio_total.innerHTML).toFixed(2))-Number(fila_eliminar.cells[3].innerHTML)).toFixed(2));
+  
+   console.log(precio_total);
+
+      var td_eliminar=fila_eliminar.lastElementChild;
+      console.log(td_eliminar)
+       fila_eliminar.removeChild(td_eliminar);
+       var celda_eliminar=document.createElement("td");
+       celda_eliminar.innerHTML='<td id="celda_agregar_producto" style="text-align:center; padding-left:0; padding-right:0;"><a title="Agregar" onclick=agregarProducto(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-plus"></i></a></td>';
+       fila_eliminar.appendChild(celda_eliminar)
+      document.getElementById("mitbody").appendChild(fila_eliminar)
+      console.log(document.getElementById("tabla_productos_disponibles"));
+  }
+  
+  </script>
 
 <script>
 
@@ -586,7 +643,7 @@ function agregarProducto(td){
   
       $("#modal2").modal("show");
   
-      //LLAMAR AL METODO DE LA BD PARA MOSTRAR LOS RESULTADOS, pasar por parámetro los productos de la tabla con id: tabla_productos_compra
+      //LLAMAR AL METODO DE LA BD PARA MOSTRAR LOS RESULTADOS, pasar por parámetro los productos de la tabla con id: tabla_productos_compra y tbody:mitbodylista
       //LLENAR EL CONTENIDO resultante EN EL ELEMENTO de ID: contenido_modal_comparar
       
    
