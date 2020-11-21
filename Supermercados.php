@@ -13,13 +13,6 @@ $supermercados = new Supermercado();
 $lista_supermercados= $supermercados->getSupermercados(); 
 $_SESSION['supermercados']=$lista_supermercados;
 
-
-// Si quiero eliminar
-
-
-//Si quiero actualizar
-
-
 // Incluyendo el head and sidebar
 include 'templates/sidebar.php';
 ?>
@@ -154,9 +147,17 @@ include 'templates/sidebar.php';
         <h6 class="modal-title">Confimar eliminación</h6>
       </div>
       <div class="modal-body">
-           ¿Seguro que desea eliminar el supermercado?
-           <button id="boton_modal" type="button"class="btn btn-sm">Si</button>
-           <button type="button"class="btn btn-sm" data-dismiss="modal">No</button>
+      ¿Seguro que desea eliminar el supermercado?
+        <?php
+        //Eliminar segun la selección
+        echo ''; 
+
+
+        ?>
+        <form method="post" action="modelos/delete_supermercado.php">
+           <button id="boton_modal" type="submit"class="btn btn-sm">Si</button>
+           <button type="button"c lass="btn btn-sm" data-dismiss="modal">No</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
@@ -166,6 +167,9 @@ include 'templates/sidebar.php';
     </div>
 
   </div>
+
+
+
 
   <div id="modal2" class="modal fade" aria-hidden="true" style="display: none; ">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -363,6 +367,7 @@ include 'templates/sidebar.php';
       //Cuando hago click en el Si del modal, elimino el elemento
      // td.closest('tr').remove();
      //**DEBO ELIMINAR EN BD***
+    
     });
   }
 </script>

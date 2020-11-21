@@ -28,6 +28,15 @@ class Supermercado
         return $result;
     }
 
+    //Inserta un supermercado
+    function insertSupermercado($nombre, $direccion, $provincia, $codigo_postal, $cadena, $latitud, $longitud){
+        $tool = new Tools();
+        $sqlUpdate = "INSERT INTO supermercado(nombre, direccion, provincia, codigo_postal, cadena, latitud, longitud) values ('$nombre', '$direccion', '$provincia', '$codigo_postal', '$cadena', '$latitud', '$longitud')";
+        $result = $tool->insertData($sqlUpdate);
+        return $result;
+    }
+
+
     //Elimina un supermercado
     function deleteSupermercado( $idsupermercado){
         $tool = new Tools();
