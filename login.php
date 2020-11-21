@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,7 +82,7 @@ if(isset($_GET["nombre"]) && isset($_GET["password"])){
                     <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
                   </div>
                  
-                 
+                
                     <!-- Poner las acciones de login cuando el usuario le de al boton acceder --> 
                     <?php
                     echo ' 
