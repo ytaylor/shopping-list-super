@@ -34,7 +34,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-shopping-cart"></i>
           </div>
@@ -46,7 +46,7 @@
   
         <!-- Nav Item - Dashboard -->
         <li class="nav-item ">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-home"></i>
             <span>Inicio</span></a>
         </li>
@@ -69,8 +69,8 @@
       </li>
   
        <!-- Nav Item - Supermercado -->
-       <li class="nav-item active">
-        <a class="nav-link" href="Supermercados.html">
+       <li class="nav-item">
+        <a class="nav-link" href="Supermercados.php">
           <i class="fas fa-store"></i>
           <span>Supermercados</span></a>
       </li>
@@ -85,8 +85,8 @@
         </div>
   
         <!-- Nav Item - Productos -->
-       <li class="nav-item">
-        <a class="nav-link" href="Productos.html">
+       <li class="nav-item active">
+        <a class="nav-link" href="Productos.php">
           <i class="fas fa-fw fa-cubes"></i>
           <span>Productos</span></a>
       </li>
@@ -298,8 +298,8 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Supermercado</h1>
-          <p class="mb-4">Aquí puede indicar los datos necesarios para adicionar un nuevo supermercado.</p>
+          <h1 class="h3 mb-2 text-gray-800">Producto</h1>
+          <p class="mb-4">Aquí puede indicar los datos necesarios para adicionar un nuevo producto.</p>
 
           <!--<div class="row justify-content-end mb-2 mr-1">
             <div class="col-xs-1 mr-1">
@@ -323,111 +323,103 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Agregar Supermercado</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Agregar Producto</h6>
             </div>
             <div class="card-body">
              
                 <form>
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="nombre_mercado">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_mercado" required>
+                        <label for="nombre_producto">Nombre</label>
+                        <input type="text" class="form-control" id="nombre_producto" required>
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="direccion_mercado">Dirección</label>
-                        <input type="text" class="form-control" id="direccion_mercado" required>
+                        <label for="categoria_producto">Categoría</label>
+                        <input type="text" class="form-control" id="categoria_producto" required>
                       </div>
                     </div>
                    
                     <div class="form-row">
 
-                        <div class="form-group col-md-6">
-                            <label for="provincia_mercado">Provincia</label>
-                            <select id="provincia_mercado" class="form-control">
-                                <option >---Seleccione una provincia---</option>
-                                <option  value="A Coruña">A Coruña</option>
-                                <option  value="Álava">Álava</option>
-                                <option  value="Albacete">Albacete</option>
-                                <option  value="Alicante">Alicante</option>
-                                <option value="Almería">Almería</option>
-                                <option  value="Asturias">Asturias</option>
-                                <option  value="Ávila">Ávila</option>
-                                <option value="Badajoz">Badajoz</option>
-                                <option value="Baleares">Baleares</option>
-                                <option value="Barcelona">Barcelona</option>
-                                <option value="Burgos">Burgos</option>
-                                <option value="Cáceres">Cáceres</option>
-                                <option value="Cádiz">Cádiz</option>
-                                <option value="Cantabria">Cantabria</option>
-                                <option value="Castellón">Castellón</option>
-                                <option value="Ciudad Real">Ciudad Real</option>
-                                <option value="Córdoba">Córdoba</option>
-                                <option  value="Cuenca">Cuenca</option>
-                                <option  value="Girona">Girona</option>
-                                <option value="Granada">Granada</option>
-                                <option value="Guadalajara">Guadalajara</option>
-                                <option  value="Gipuzkoa">Gipuzkoa</option>
-                                <option value="Huelva">Huelva</option>
-                                <option value="Huesca">Huesca</option>
-                                <option value="Jaén">Jaén</option>
-                                <option  value="La Rioja">La Rioja</option>
-                                <option value="Las Palmas">Las Palmas</option>
-                                <option  value="León">León</option>
-                                <option  value="Lérida">Lérida</option>
-                                <option  value="Lugo">Lugo</option>
-                                <option value="Madrid">Madrid</option>
-                                <option value="Málaga">Málaga</option>
-                                <option value="Murcia">Murcia</option>
-                                <option value="Navarra">Navarra</option>
-                                <option value="Ourense"></option>Ourense</option>
-                                <option value="Palencia">Palencia</option>
-                                <option value="Pontevedra">Pontevedra</option>
-                                <option value="Salamanca">Salamanca</option>
-                                <option value="Segovia">Segovia</option>
-                                <option  value="Sevilla">Sevilla</option>
-                                <option value="Soria">Soria</option>
-                                <option value="Tarragona">Tarragona</option>
-                                <option  value="Santa Cruz de Tenerife">Santa Cruz de Tenerife</option>
-                                <option  value="Teruel">Teruel</option>
-                                <option value="Toledo">Toledo</option>
-                                <option  value="Valencia">Valencia</option>
-                                <option value="Valladolid">Valladolid</option>
-                                <option value="Vizcaya">Vizcaya</option>
-                                <option value="Zamora">Zamora</option>
-                                <option  value="Zaragoza">Zaragoza</option>
-                                <option  value="Cdad. Autónoma Ceuta">Cdad. Autónoma Ceuta</option>
-                                <option value="Cdad. Autónoma Melilla">Cdad. Autónoma Melilla</option>
-                            </select>
+                  <!-- PARA LLENAR LOS DATOS DE LA LISTA DE SUPERMERCADOS (ID y Nombre) LLAMADA A BD -->
+                 
+                    <div class="card shadow mb-4 col">
+                        <div class="card-header py-3">
+                          <h6 class="m-0 font-weight-bold text-primary">Precio por cada supermercado</h6>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <table id="tabla_productos_disponibles" class="table table-bordered"  width="100%" cellspacing="0">
+                              <thead>
+                                <tr>
+                                  <th>Id.</th>
+                                  <th>Supermercado</th>
+                                
+                                  <th>Precio</th>
+                                  <th>Descuento</th>
+                               
+                                </tr>
+                              </thead>
+                              
+                              <tbody id="mitbody">
+
+                                <!-- LLAMADA A BD PARA CONSTRUIR LAS COLUMNAS DINAMICAMENTE-->
+
+                                <script>
+
+                                    var datos_ejemplo=[ {"id":0,
+                                                         "nombre":"Gadis"},
+                                                         {"id":1,
+                                                         "nombre":"Eroski"},
+                                                         {"id":2,
+                                                         "nombre":"Lidl"}                                          
+                                                      ]
+
+                                    
+                                    for (let index = 0; index < datos_ejemplo.length; index++) {
+                                        
+                                        var fila=document.createElement("tr")
+
+                                        var celda_id=document.createElement("td")                                      
+                                        var celda_nombre=document.createElement("td")
+
+                                        celda_id.innerHTML=datos_ejemplo[index].id
+                                        celda_nombre.innerHTML=datos_ejemplo[index].nombre
+
+                                        var celda_precio=document.createElement("td")
+                                        celda_precio.style.width="200px";
+                                        var celda_descuento=document.createElement("td")
+                                        celda_descuento.style.width="200px";
+
+                                        celda_precio.innerHTML="<input style='width:150px' type='text' class='form-control precio ' required> "
+                                        celda_descuento.innerHTML="<input style='width:150px' type='text' class='form-control descuento' required>"
+
+                                        fila.appendChild(celda_id)
+                                        fila.appendChild(celda_nombre)
+                                        fila.appendChild(celda_precio)
+                                        fila.appendChild(celda_descuento)
+
+                                        document.getElementById("mitbody").appendChild(fila)
+
+                                        
+                                    }
+                                   
+
+                                </script>
+                               
+                              </tbody>
+                            </table>
                           </div>
-                      <div class="form-group col-md-6">
-                        <label for="codigopostal_mercado">Código postal</label>
-                        <input type="number" class="form-control" id="codigopostal_mercado">
-                      </div>                      
-                      
+                        </div>
+                      </div>
+                        
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <label for="latitud">Latitud</label>
-                          <input type="text" class="form-control" id="latitud">
-                        </div>
-                        <div class="form-group col-md-6">
-                          <label for="longitud">Longitud</label>
-                          <input type="text" class="form-control" id="longitud">
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <label for="cadena">Cadena</label>
-                          <input type="text" class="form-control" id="cadena">
-                        </div>
-                        
-                      </div>
-
+                  
                     <div class="row justify-content-end">
 
                         <div class="col-xs-1 mr-1"> 
-                            <a title="Cancelar" href="Supermercados.html" class="btn btn-outline-primary">
+                            <a title="Cancelar" href="Productos.php" class="btn btn-outline-primary">
                            
                                 <span class="text">Cancelar</span>
                             </a>
@@ -481,7 +473,7 @@
         <div class="modal-body">Selecciona "Salir" si estás listo para abandonar la sesión.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.html">Salir</a>
+          <a class="btn btn-primary" href="login.php">Salir</a>
         </div>
       </div>
     </div>

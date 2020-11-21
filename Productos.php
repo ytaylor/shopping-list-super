@@ -34,7 +34,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-shopping-cart"></i>
           </div>
@@ -46,7 +46,7 @@
   
         <!-- Nav Item - Dashboard -->
         <li class="nav-item ">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-home"></i>
             <span>Inicio</span></a>
         </li>
@@ -63,14 +63,14 @@
   
          <!-- Nav Item - Lista de la compra -->
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="ListasCompra.php">
           <i class="fas fa-tasks"></i>
           <span>Listas de la Compra</span></a>
       </li>
   
        <!-- Nav Item - Supermercado -->
-       <li class="nav-item">
-        <a class="nav-link" href="Supermercados.html">
+       <li class="nav-item ">
+        <a class="nav-link" href="Supermercados.php">
           <i class="fas fa-store"></i>
           <span>Supermercados</span></a>
       </li>
@@ -86,7 +86,7 @@
   
         <!-- Nav Item - Productos -->
        <li class="nav-item active">
-        <a class="nav-link" href="Productos.html">
+        <a class="nav-link" href="Productos.php">
           <i class="fas fa-fw fa-cubes"></i>
           <span>Productos</span></a>
       </li>
@@ -298,12 +298,12 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Producto</h1>
-          <p class="mb-4">Aquí puede indicar los datos necesarios para adicionar un nuevo producto.</p>
+          <h1 class="h3 mb-2 text-gray-800">Productos</h1>
+          <p class="mb-4">Aquí puede adicionar, modificar y/o eliminar productos</p>
 
-          <!--<div class="row justify-content-end mb-2 mr-1">
+        <div class="row justify-content-end mb-2 mr-1">
             <div class="col-xs-1 mr-1">
-                <a title="Actualizar listado" href="#" class="btn btn-primary btn-icon-split btn-sm">
+                <a title="Actualizar listado" onclick="actualizarListado()" href="#" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                     <i class="fas fa-sync"></i>
                     </span>
@@ -311,125 +311,65 @@
                 </a>
            </div>
             <div class="col-xs-1">
-                <a title="Adicionar supermercado" href="#" class="btn btn-primary btn-icon-split btn-sm">
+                <a title="Adicionar producto" href="AgregarProducto.php" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">Nuevo</span>
                 </a>
            </div>
-        </div>-->
+        </div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Agregar Producto</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Lista de productos</h6>
             </div>
             <div class="card-body">
-             
-                <form>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="nombre_producto">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_producto" required>
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label for="categoria_producto">Categoría</label>
-                        <input type="text" class="form-control" id="categoria_producto" required>
-                      </div>
-                    </div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Id.</th>
+                      <th>Nombre</th>
+                      <th>Categoría</th>
+                     
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                        <th>Id.</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                    </tr>
+                  </tfoot>
+
+                  <!-- SE LLENA CON LOS DATOS DE LA BD -->
+
+                  <tbody id="mitbody">
+                    <tr>
+                      <td>1</td>
+                      <td>Producto 1</td>
+                      <td>Quesos</td>
+                     
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Producto 2</td>
+                        <td>Carnes</td>
+                       
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Producto 3</td>
+                        <td>Embutidos</td>
+                       
+                    </tr>
+                                  
                    
-                    <div class="form-row">
-
-                  <!-- PARA LLENAR LOS DATOS DE LA LISTA DE SUPERMERCADOS (ID y Nombre) LLAMADA A BD -->
-                 
-                    <div class="card shadow mb-4 col">
-                        <div class="card-header py-3">
-                          <h6 class="m-0 font-weight-bold text-primary">Precio por cada supermercado</h6>
-                        </div>
-                        <div class="card-body">
-                          <div class="table-responsive">
-                            <table id="tabla_productos_disponibles" class="table table-bordered"  width="100%" cellspacing="0">
-                              <thead>
-                                <tr>
-                                  <th>Id.</th>
-                                  <th>Supermercado</th>
-                                
-                                  <th>Precio</th>
-                                  <th>Descuento</th>
-                               
-                                </tr>
-                              </thead>
-                              
-                              <tbody id="mitbody">
-
-                                <!-- LLAMADA A BD PARA CONSTRUIR LAS COLUMNAS DINAMICAMENTE-->
-
-                                <script>
-
-                                    var datos_ejemplo=[ {"id":0,
-                                                         "nombre":"Gadis"},
-                                                         {"id":1,
-                                                         "nombre":"Eroski"},
-                                                         {"id":2,
-                                                         "nombre":"Lidl"}                                          
-                                                      ]
-
-                                    
-                                    for (let index = 0; index < datos_ejemplo.length; index++) {
-                                        
-                                        var fila=document.createElement("tr")
-
-                                        var celda_id=document.createElement("td")                                      
-                                        var celda_nombre=document.createElement("td")
-
-                                        celda_id.innerHTML=datos_ejemplo[index].id
-                                        celda_nombre.innerHTML=datos_ejemplo[index].nombre
-
-                                        var celda_precio=document.createElement("td")
-                                        celda_precio.style.width="200px";
-                                        var celda_descuento=document.createElement("td")
-                                        celda_descuento.style.width="200px";
-
-                                        celda_precio.innerHTML="<input style='width:150px' type='text' class='form-control precio ' required> "
-                                        celda_descuento.innerHTML="<input style='width:150px' type='text' class='form-control descuento' required>"
-
-                                        fila.appendChild(celda_id)
-                                        fila.appendChild(celda_nombre)
-                                        fila.appendChild(celda_precio)
-                                        fila.appendChild(celda_descuento)
-
-                                        document.getElementById("mitbody").appendChild(fila)
-
-                                        
-                                    }
-                                   
-
-                                </script>
-                               
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                        
-                    </div>
-
-                  
-                    <div class="row justify-content-end">
-
-                        <div class="col-xs-1 mr-1"> 
-                            <a title="Cancelar" href="Productos.html" class="btn btn-outline-primary">
-                           
-                                <span class="text">Cancelar</span>
-                            </a>
-                        </div>  
-                        <div class="col-xs-1"> <button type="submit" class="btn btn-primary">Guardar</button></div> 
-                        
-
-                    </div>
-                  </form>
-
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
@@ -439,6 +379,7 @@
       </div>
       <!-- End of Main Content -->
 
+     
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -473,15 +414,220 @@
         <div class="modal-body">Selecciona "Salir" si estás listo para abandonar la sesión.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.html">Salir</a>
+          <a class="btn btn-primary" href="login.php">Salir</a>
         </div>
       </div>
     </div>
   </div>
 
+   <!--Modales-->
+
+  <div id="modal1" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title">Confimar eliminación</h6>
+      </div>
+      <div class="modal-body">
+           ¿Seguro que desea eliminar el producto?
+           <button id="boton_modal" type="button"class="btn btn-sm">Si</button>
+           <button type="button"class="btn btn-sm" data-dismiss="modal">No</button>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+      </div>
+      
+      </div>
+    </div>
+
+  </div>
+
+  <div id="modal2" class="modal fade" aria-hidden="true" style="display: none; ">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title"> Editar Producto</h6>
+        <button type="button"class="btn btn-lg" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="id_producto">Id.</label>
+              <input type="text" class="form-control campos_form" id="id_producto" disabled>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="nombre_producto">Nombre</label>
+              <input type="text" class="form-control campos_form" id="nombre_producto" >
+            </div>
+          </div>
+          <div class="form-row">
+           
+            <div class="form-group col-md-6">
+              <label for="categoria_producto">Categoría</label>
+              <input type="text" class="form-control campos_form" id="categoria_producto" >
+            </div>
+         </div>
+           
+         
+         <div class="row justify-content-end">
+
+              <div class="col-xs-1 mr-1" id="boton_guardar"> <button type="submit" class="btn btn-primary" >Guardar</button></div>  
+              <div class="col-xs-1" > <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Cancelar</button></div> 
+
+          </div>
+        </form>
+          <!--end: Form-->
+
+        </div>
+    </div>
+
+  </div>
+</div>
+
   <!--Scripts personalizados-->
   
- 
+  <script>
+
+    //FUNCION PARA AÑADIR LOS BOTONES DE EDITAR Y ELIMINAR AL FINAL DE CADA FILA
+    
+    //Cojo el tbody
+    var tbody= document.getElementById("mitbody");
+
+    //Cojo la primera fila del tbody
+     var fila=tbody.firstElementChild;
+     
+    
+     //Me muevo por todas las filas del tbody, hasta que llegue a la ultima
+     while(fila!=null)
+     {
+        
+         //Me muevo por todos los hijos de la fila(los td)
+         for (let index = 0; index < fila.children.length; index++) {
+             if(fila.children[index]==fila.lastElementChild)
+             {
+                
+                fila.innerHTML+='<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Editar" onclick=editarElemento(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-edit"></i></a></td>';
+                fila.innerHTML+= '<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Eliminar" onclick=eliminarElemento(this) class="btn btn-primary btn-circle btn-sm"><i class="fas fa-trash"></i></a></td>';
+                
+                break;
+             }
+            
+         }
+        
+        fila=fila.nextElementSibling;
+
+     };
+
+</script>
+
+<script>
+
+  //FUNCION PARA ACTUALIZAR LA LISTA CADA VEZ QUE SEA NECESARIO : LLAMAR AL METODO QUE ME TRAE LAS LISTAS DE COMPRA
+
+  function actualizarListado(){
+
+    console.log("prueba")
+
+
+  }
+
+</script>
+
+
+<script>
+
+  //FUNCION PARA EDITAR UN ELEMENTO
+
+  function editarElemento(td){
+
+    $("#modal2").modal("show");
+
+            
+    fila=td.closest("tr");
+    
+    
+    var campos_form=document.getElementsByClassName("campos_form");
+
+   
+    //Lleno los campos con los datos de la fila
+    for (let index = 0; index <fila.children.length-2; index++) {
+
+      if (campos_form[index].tagName=="INPUT") {
+
+        campos_form[index].value=fila.children[index].innerHTML;
+  
+      }
+
+      else if (campos_form[index].tagName=="SELECT") {
+
+        if(campos_form[index].disabled){
+          campos_form[index].disabled=false;
+        }	
+
+      var opciones=campos_form[index].getElementsByTagName("option");
+
+
+      for (let j = 0; j < opciones.length; j++) {
+        
+        if(opciones[j].innerHTML==fila.children[index].innerHTML)
+        {
+          
+          campos_form[index].selectedIndex=j;
+          
+          break;
+        }
+        
+      }
+
+    }
+
+  }
+  
+
+      document.getElementById("boton_guardar").addEventListener("click",function(e){
+
+        e.preventDefault();
+
+         //***LUEGO GUARDAR EN LA BD***
+    
+        $("#modal2").modal("hide");
+
+    
+  });
+
+}
+
+</script>
+
+<script>
+
+  //FUNCION PARA ELIMINAR UN elemento
+
+  function eliminarElemento(td){
+
+    $("#modal1").modal("show");
+
+    
+    $("#boton_modal").on("click", function(){
+
+      
+      //Cuando hago click en el Si del modal, elimino el elemento
+    
+     // td.closest('tr').remove();
+
+     //**DEBO ELIMINAR EN BD***
+
+            
+
+    });
+
+  }
+
+
+</script>
+
+
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

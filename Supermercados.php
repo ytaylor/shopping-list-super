@@ -34,7 +34,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-shopping-cart"></i>
           </div>
@@ -46,7 +46,7 @@
   
         <!-- Nav Item - Dashboard -->
         <li class="nav-item ">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-home"></i>
             <span>Inicio</span></a>
         </li>
@@ -62,15 +62,15 @@
         <!-- Elementos a gestionar -->
   
          <!-- Nav Item - Lista de la compra -->
-      <li class="nav-item active">
-        <a class="nav-link" href="ListasCompra.html">
+      <li class="nav-item">
+        <a class="nav-link" href="ListasCompra.php">
           <i class="fas fa-tasks"></i>
           <span>Listas de la Compra</span></a>
       </li>
   
        <!-- Nav Item - Supermercado -->
-       <li class="nav-item">
-        <a class="nav-link" href="Supermercados.html">
+       <li class="nav-item active">
+        <a class="nav-link" href="Supermercados.php">
           <i class="fas fa-store"></i>
           <span>Supermercados</span></a>
       </li>
@@ -86,7 +86,7 @@
   
         <!-- Nav Item - Productos -->
        <li class="nav-item">
-        <a class="nav-link" href="Productos.html">
+        <a class="nav-link" href="Productos.php">
           <i class="fas fa-fw fa-cubes"></i>
           <span>Productos</span></a>
       </li>
@@ -298,12 +298,12 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Lista de la Compra</h1>
-          <p class="mb-4">Aquí puede indicar los datos necesarios para adicionar una nueva lista de compra.</p>
+          <h1 class="h3 mb-2 text-gray-800">Supermercados</h1>
+          <p class="mb-4">Aquí puede adicionar, modificar y/o eliminar supermercados</p>
 
-          <!--<div class="row justify-content-end mb-2 mr-1">
+        <div class="row justify-content-end mb-2 mr-1">
             <div class="col-xs-1 mr-1">
-                <a title="Actualizar listado" href="#" class="btn btn-primary btn-icon-split btn-sm">
+                <a title="Actualizar listado" onclick="actualizarListado()" href="#" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                     <i class="fas fa-sync"></i>
                     </span>
@@ -311,152 +311,107 @@
                 </a>
            </div>
             <div class="col-xs-1">
-                <a title="Adicionar supermercado" href="#" class="btn btn-primary btn-icon-split btn-sm">
+                <a title="Adicionar supermercado" href="AgregarSupermercado.php" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">Nuevo</span>
                 </a>
            </div>
-        </div>-->
+        </div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Agregar Lista de compra</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Lista de supermercados</h6>
             </div>
             <div class="card-body">
-             
-                <form>
-                    <div class="form-row ">
-                      <div class="form-group col-md-6">
-                        <label for="nombre_lista">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_lista" required>
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label for="select_mercado">Supermercado</label>
-                        <select id="select_mercado" class="form-control" onchange="cargarProductos()">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Id.</th>
+                      <th>Nombre</th>
+                      <th>Dirección</th>
+                      <th>Provincia</th>
+                      <th>Código Postal</th>
+                      <th>Latitud</th>
+                      <th>Longitud</th>
+                      <th>Cadena</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                        <th>Id.</th>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Provincia</th>
+                        <th>Código Postal</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                        <th>Cadena</th>
+                    </tr>
+                  </tfoot>
 
-                            <option >---Seleccione un supermercado---</option>
-                            <!-- LLAMADA A BASE DE DATOS PARA LLENAR LOS OPTIONS-->
+                  <!-- SE LLENA CON LOS DATOS DE LA BD -->
 
-                        </select>
-                    </div>
+                  <tbody id="mitbody">
+                    <tr>
+                      <td>1</td>
+                      <td>Almacen 1</td>
+                      <td>Dirección 1</td>
+                      <td>A Coruña</td>
+                      <td>15660</td>
+                      <td>672</td>
+                      <td>672</td>
+                      <td>Gadis</td>
                       
-                    </div>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Almacen 2</td>
+                        <td>Dirección 2</td>
+                        <td>Valencia</td>
+                        <td>15660</td>
+                        <td>672</td>
+                        <td>672</td>
+                        <td>Eroski</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Almacen 3</td>
+                        <td>Dirección 3</td>
+                        <td>Valladolid</td>
+                        <td>15660</td>
+                        <td>672</td>
+                        <td>672</td>
+                        <td>Gadis</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Almacen 4</td>
+                        <td>Dirección 4</td>
+                        <td>A Coruña</td>
+                        <td>15660</td>
+                        <td>672</td>
+                        <td>672</td>
+                        <td>Eroski</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Almacen 5</td>
+                        <td>Dirección 5</td>
+                        <td>Madrid</td>
+                        <td>15660</td>
+                        <td>672</td>
+                        <td>672</td>
+                        <td>Gadis</td>
+                    </tr>
                    
-                      <!-- LISTA DE PRODUCTOS A LLENAR DE ACUERDO AL SUPER SELECCIONADO-->
-
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                          <h6 class="m-0 font-weight-bold text-primary">Productos disponibles</h6>
-                        </div>
-                        <div class="card-body">
-                          <div class="table-responsive">
-                            <table id="tabla_productos_disponibles" class="table table-bordered"  width="100%" cellspacing="0">
-                              <thead>
-                                <tr>
-                                  <th>Id.</th>
-                                  <th>Nombre</th>
-                                
-                                  <th>Categoría</th>
-                                  <th>Precio</th>
-                                  <th>Descuento</th>
-                               
-                                </tr>
-                              </thead>
-                              
-                              <tbody id="mitbody">
-                                <tr>
-                                  <td>1</td>
-                                  <td>Producto 1</td>
-                                
-                                  <td>Quesos</td>
-                                 
-                                  <td>3.95</td>
-                                  <td>1.00</td>
-                                  
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                  <td>Producto 2</td>
-                                
-                                  <td>Carnes</td>
-                                 
-                                  <td>8.69</td>
-                                  <td>2.00</td>
-                                </tr>
-                               
-                               
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- LISTA DE LA COMPRA -->
-
-                    <div class="card shadow mb-4">
-                        
-                        <div class="card-header py-3">
-                          <h6 class="m-0 font-weight-bold text-primary">Lista de la Compra</h6>
-                        </div>
-                       
-                        
-                        <div class="card-body">
-
-                             <!--TOTAL A IR SUMANDO A MEDIDA QUE AGREGUE UN PRODUCTO A LA COMPRA -->
-
-                            <div class="row justify-content-end">
-                                <div class="col-xs-2 mr-5" style="font-weight:bold; color:black; ">
-                                    <label>Precio Total: <span id="precio_total_lista"></span></label>
-                                </div>
-                            </div>
-
-                            <!--BOTON PARA COMPARAR LA LISTA CON OTROS SUPER -->
-
-                            <div class="row ">
-                                <div class="col-xs-1 ml-2 mb-2"> 
-                                    <button onclick="compararLista()" type="button" title="Comparar con otros supermercados" class="btn btn-info">Comparar</button>
-                                </div>
-                            </div>
-
-                          <div class="table-responsive">
-                            <table id="tabla_productos_compra" class="table table-bordered"  width="100%" cellspacing="0">
-                              <thead>
-                                <tr>
-                                  <th>Id.</th>
-                                  <th>Nombre</th>
-                                
-                                  <th>Categoría</th>
-                                  <th>Precio</th>
-                                  <th>Descuento</th>
-                               
-                                </tr>
-                              </thead>
-                             
-                              <tbody id="mitbodylista">
-                               
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-
-                    <div class="row justify-content-end">
-
-                        
-                        <div class="col-xs-1 mr-1"> 
-                            <a title="Cancelar" href="ListasCompra.html" class="btn btn-outline-primary">
-                           
-                                <span class="text">Cancelar</span>
-                            </a>
-                        </div> 
-                        <div class="col-xs-1"> <button type="submit" class="btn btn-primary">Guardar</button></div>  
-
-                    </div>
-                  </form>
-
+                   
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
@@ -466,6 +421,7 @@
       </div>
       <!-- End of Main Content -->
 
+     
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -500,28 +456,155 @@
         <div class="modal-body">Selecciona "Salir" si estás listo para abandonar la sesión.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.html">Salir</a>
+          <a class="btn btn-primary" href="login.php">Salir</a>
         </div>
       </div>
     </div>
   </div>
 
- <!-- Modal Comparación-->
- <div id="modal2" class="modal fade" aria-hidden="true" style="display: none; ">
+   <!--Modales-->
+
+  <div id="modal1" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title">Confimar eliminación</h6>
+      </div>
+      <div class="modal-body">
+           ¿Seguro que desea eliminar el supermercado?
+           <button id="boton_modal" type="button"class="btn btn-sm">Si</button>
+           <button type="button"class="btn btn-sm" data-dismiss="modal">No</button>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+      </div>
+      
+      </div>
+    </div>
+
+  </div>
+
+  <div id="modal2" class="modal fade" aria-hidden="true" style="display: none; ">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title"> Lista de Compra en otros supermercados</h6>
+        <h6 class="modal-title"> Editar Supermercado</h6>
         <button type="button"class="btn btn-lg" data-dismiss="modal">&times;</button>
       </div>
-      <div class="modal-body" id="contenido_modal_comparar">
+      <div class="modal-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="id_mercado">Id.</label>
+              <input type="text" class="form-control campos_form" id="id_mercado" disabled>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="nombre_mercado">Nombre</label>
+              <input type="text" class="form-control campos_form" id="nombre_mercado" >
+            </div>
+          </div>
+          <div class="form-row">
+           
+            <div class="form-group col-md-6">
+              <label for="direccion_mercado">Dirección</label>
+              <input type="text" class="form-control campos_form" id="direccion_mercado" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="provincia_mercado">Provincia</label>
+              <select id="provincia_mercado" class="form-control campos_form">
+                  <option >---Seleccione una provincia---</option>
+                  <option  value="A Coruña">A Coruña</option>
+                  <option  value="Álava">Álava</option>
+                  <option  value="Albacete">Albacete</option>
+                  <option  value="Alicante">Alicante</option>
+                  <option value="Almería">Almería</option>
+                  <option  value="Asturias">Asturias</option>
+                  <option  value="Ávila">Ávila</option>
+                  <option value="Badajoz">Badajoz</option>
+                  <option value="Baleares">Baleares</option>
+                  <option value="Barcelona">Barcelona</option>
+                  <option value="Burgos">Burgos</option>
+                  <option value="Cáceres">Cáceres</option>
+                  <option value="Cádiz">Cádiz</option>
+                  <option value="Cantabria">Cantabria</option>
+                  <option value="Castellón">Castellón</option>
+                  <option value="Ciudad Real">Ciudad Real</option>
+                  <option value="Córdoba">Córdoba</option>
+                  <option  value="Cuenca">Cuenca</option>
+                  <option  value="Girona">Girona</option>
+                  <option value="Granada">Granada</option>
+                  <option value="Guadalajara">Guadalajara</option>
+                  <option  value="Gipuzkoa">Gipuzkoa</option>
+                  <option value="Huelva">Huelva</option>
+                  <option value="Huesca">Huesca</option>
+                  <option value="Jaén">Jaén</option>
+                  <option  value="La Rioja">La Rioja</option>
+                  <option value="Las Palmas">Las Palmas</option>
+                  <option  value="León">León</option>
+                  <option  value="Lérida">Lérida</option>
+                  <option  value="Lugo">Lugo</option>
+                  <option value="Madrid">Madrid</option>
+                  <option value="Málaga">Málaga</option>
+                  <option value="Murcia">Murcia</option>
+                  <option value="Navarra">Navarra</option>
+                  <option value="Ourense"></option>Ourense</option>
+                  <option value="Palencia">Palencia</option>
+                  <option value="Pontevedra">Pontevedra</option>
+                  <option value="Salamanca">Salamanca</option>
+                  <option value="Segovia">Segovia</option>
+                  <option  value="Sevilla">Sevilla</option>
+                  <option value="Soria">Soria</option>
+                  <option value="Tarragona">Tarragona</option>
+                  <option  value="Santa Cruz de Tenerife">Santa Cruz de Tenerife</option>
+                  <option  value="Teruel">Teruel</option>
+                  <option value="Toledo">Toledo</option>
+                  <option  value="Valencia">Valencia</option>
+                  <option value="Valladolid">Valladolid</option>
+                  <option value="Vizcaya">Vizcaya</option>
+                  <option value="Zamora">Zamora</option>
+                  <option  value="Zaragoza">Zaragoza</option>
+                  <option  value="Cdad. Autónoma Ceuta">Cdad. Autónoma Ceuta</option>
+                  <option value="Cdad. Autónoma Melilla">Cdad. Autónoma Melilla</option>
+              </select>
+            </div>
+          </div>
+         
+          <div class="form-row">
 
+             
+            <div class="form-group col-md-6">
+              <label for="codigopostal_mercado">Código postal</label>
+              <input type="number" class="form-control campos_form" id="codigopostal_mercado">
+            </div>  
+            <div class="form-group col-md-6">
+              <label for="latitud">Latitud</label>
+              <input type="text" class="form-control campos_form" id="latitud">
+            </div>                    
+            
+          </div>
 
-       
-        </div>
-        <div class="modal-footer justify-content-end">
- 
-            <div class="col-xs-1" > <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Cerrar</button></div> 
+          <div class="form-row">
+             
+              <div class="form-group col-md-6">
+                <label for="longitud">Longitud</label>
+                <input type="text" class="form-control campos_form" id="longitud">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="cadena">Cadena</label>
+                <input type="text" class="form-control campos_form" id="cadena">
+              </div>
+              
+            </div>
+          
+
+          <div class="row justify-content-end">
+
+              <div class="col-xs-1 mr-1" id="boton_guardar"> <button type="submit" class="btn btn-primary" >Guardar</button></div>  
+              <div class="col-xs-1" > <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Cancelar</button></div> 
+
+          </div>
+        </form>
+          <!--end: Form-->
 
         </div>
     </div>
@@ -529,27 +612,11 @@
   </div>
 </div>
 
-   <!--Scripts personalizados-->
+  <!--Scripts personalizados-->
+  
+  <script>
 
-   <script>
-
-    //FUNCION LLENAR LA TABLA DE PRODUCTOS DISPONIBLES DEL SUPERMERCADO SELECCIONADO
-  
-    function cargarProductos(){
-  
-      
-      //LLAMAR AL METODO DE LA BD PARA MOSTRAR LOS RESULTADOS, pasar por parámetro el super seleccionado del select con id: select_mercado
-      //LLENAR EL CONTENIDO resultante EN la tabla de tbody: mitbody
-      
-   
-  
-  }
-  
-  </script>
-  
-   <script>
-
-    //FUNCION PARA AÑADIR UN BOTON ADICIONAR AL FINAL DE CADA FILA
+    //FUNCION PARA AÑADIR LOS BOTONES DE EDITAR Y ELIMINAR AL FINAL DE CADA FILA
     
     //Cojo el tbody
     var tbody= document.getElementById("mitbody");
@@ -566,8 +633,9 @@
          for (let index = 0; index < fila.children.length; index++) {
              if(fila.children[index]==fila.lastElementChild)
              {
-                fila.innerHTML+='<td id="celda_agregar_producto" style="text-align:center; padding-left:0; padding-right:0;"><a title="Agregar" onclick=agregarProducto(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-plus"></i></a></td>';
-             
+                
+                fila.innerHTML+='<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Editar" onclick=editarElemento(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-edit"></i></a></td>';
+                fila.innerHTML+= '<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Eliminar" onclick=eliminarElemento(this) class="btn btn-primary btn-circle btn-sm"><i class="fas fa-trash"></i></a></td>';
                 
                 break;
              }
@@ -582,79 +650,111 @@
 
 <script>
 
-precio_total=document.getElementById("precio_total_lista");
+  //FUNCION PARA ACTUALIZAR LA LISTA CADA VEZ QUE SEA NECESARIO : LLAMAR AL METODO QUE ME TRAE LAS LISTAS DE COMPRA
 
-//DESARROLLAR LA FUNCION PARA AGREGAR EL PRODUCTO A LA TABLA LISTA DE COMPRA TENER EN CUENTA CADA VEZ QUE AGREGUE UNO INCREMENTAR EL TOTAL
-//CAMPO TOTAL: precio_total_lista
+  function actualizarListado(){
 
-function agregarProducto(td){
+    console.log("prueba")
 
-   var fila=td.closest("tr");
-   console.log(fila)
 
-  console.log(fila.cells);
-  precio_total.innerHTML= Number(Number(Number(Number(precio_total.innerHTML).toFixed(2))+Number(fila.cells[3].innerHTML))).toFixed(2);
+  }
+
+</script>
+
+
+<script>
+
+  //FUNCION PARA EDITAR UN ELEMENTO
+
+  function editarElemento(td){
+
+    $("#modal2").modal("show");
+
+            
+    fila=td.closest("tr");
+    
+    
+    var campos_form=document.getElementsByClassName("campos_form");
+
+   
+    //Lleno los campos con los datos de la fila
+    for (let index = 0; index <fila.children.length-2; index++) {
+
+      if (campos_form[index].tagName=="INPUT") {
+
+        campos_form[index].value=fila.children[index].innerHTML;
   
-   console.log(precio_total);
+      }
 
-   var td_agregar=fila.lastElementChild;
-      console.log(td_agregar)
-     fila.removeChild(td_agregar);
-     var celda=document.createElement("td");
-     celda.innerHTML='<td id="celda_eliminar_producto" style="text-align:center; padding-left:0; padding-right:0;"><a title="Eliminar" onclick=eliminarProducto(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-trash"></i></a></td>';
-     fila.appendChild(celda)
-    document.getElementById("mitbodylista").appendChild(fila)
-    console.log(document.getElementById("tabla_productos_compra"));
+      else if (campos_form[index].tagName=="SELECT") {
+
+        if(campos_form[index].disabled){
+          campos_form[index].disabled=false;
+        }	
+
+      var opciones=campos_form[index].getElementsByTagName("option");
+
+
+      for (let j = 0; j < opciones.length; j++) {
+        
+        if(opciones[j].innerHTML==fila.children[index].innerHTML)
+        {
+          
+          campos_form[index].selectedIndex=j;
+          
+          break;
+        }
+        
+      }
+
+    }
+
+  }
+  
+
+      document.getElementById("boton_guardar").addEventListener("click",function(e){
+
+        e.preventDefault();
+
+         //***LUEGO GUARDAR EN LA BD***
+    
+        $("#modal2").modal("hide");
+
+    
+  });
+
 }
 
 </script>
 
 <script>
 
-  //DESARROLLAR LA FUNCION PARA Eliminar EL PRODUCTO DE LA TABLA LISTA DE COMPRA TENER EN CUENTA CADA VEZ QUE ELIMINE UNO Decremento EL TOTAL
-  //CAMPO TOTAL: precio_total_lista
-  
-  function eliminarProducto(td){
-  
-      var fila_eliminar=td.closest("tr");
-      console.log(fila_eliminar)
+  //FUNCION PARA ELIMINAR UN elemento
 
-      console.log(fila_eliminar.cells);
-  precio_total.innerHTML= Number(Number(Number(Number(precio_total.innerHTML).toFixed(2))-Number(fila_eliminar.cells[3].innerHTML)).toFixed(2));
-  
-   console.log(precio_total);
+  function eliminarElemento(td){
 
-      var td_eliminar=fila_eliminar.lastElementChild;
-      console.log(td_eliminar)
-       fila_eliminar.removeChild(td_eliminar);
-       var celda_eliminar=document.createElement("td");
-       celda_eliminar.innerHTML='<td id="celda_agregar_producto" style="text-align:center; padding-left:0; padding-right:0;"><a title="Agregar" onclick=agregarProducto(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-plus"></i></a></td>';
-       fila_eliminar.appendChild(celda_eliminar)
-      document.getElementById("mitbody").appendChild(fila_eliminar)
-      console.log(document.getElementById("tabla_productos_disponibles"));
-  }
-  
-  </script>
+    $("#modal1").modal("show");
 
-<script>
+    
+    $("#boton_modal").on("click", function(){
 
-    //FUNCION PARA MOSTRAR EN EL MODAL LA COMPARACION DE LA LISTA EN OTROS SUPERMERCADOS
-  
-    function compararLista(){
-  
-      $("#modal2").modal("show");
-  
-      //LLAMAR AL METODO DE LA BD PARA MOSTRAR LOS RESULTADOS, pasar por parámetro los productos de la tabla con id: tabla_productos_compra y tbody:mitbodylista
-      //LLENAR EL CONTENIDO resultante EN EL ELEMENTO de ID: contenido_modal_comparar
       
-   
-  
-  }
-  
-  </script>
+      //Cuando hago click en el Si del modal, elimino el elemento
+    
+     // td.closest('tr').remove();
 
-  
- 
+     //**DEBO ELIMINAR EN BD***
+
+            
+
+    });
+
+  }
+
+
+</script>
+
+
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

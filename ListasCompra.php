@@ -34,7 +34,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-shopping-cart"></i>
           </div>
@@ -46,7 +46,7 @@
   
         <!-- Nav Item - Dashboard -->
         <li class="nav-item ">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-home"></i>
             <span>Inicio</span></a>
         </li>
@@ -62,15 +62,15 @@
         <!-- Elementos a gestionar -->
   
          <!-- Nav Item - Lista de la compra -->
-      <li class="nav-item">
-        <a class="nav-link" href="ListasCompra.html">
+      <li class="nav-item active">
+        <a class="nav-link" href="">
           <i class="fas fa-tasks"></i>
           <span>Listas de la Compra</span></a>
       </li>
   
        <!-- Nav Item - Supermercado -->
        <li class="nav-item ">
-        <a class="nav-link" href="Supermercados.html">
+        <a class="nav-link" href="Supermercados.php">
           <i class="fas fa-store"></i>
           <span>Supermercados</span></a>
       </li>
@@ -85,8 +85,8 @@
         </div>
   
         <!-- Nav Item - Productos -->
-       <li class="nav-item active">
-        <a class="nav-link" href="Productos.html">
+       <li class="nav-item">
+        <a class="nav-link" href="Productos.php">
           <i class="fas fa-fw fa-cubes"></i>
           <span>Productos</span></a>
       </li>
@@ -298,8 +298,8 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Productos</h1>
-          <p class="mb-4">Aquí puede adicionar, modificar y/o eliminar productos</p>
+          <h1 class="h3 mb-2 text-gray-800">Listas de la compra</h1>
+          <p class="mb-4">Aquí puede adicionar, modificar y/o eliminar listas de la compra</p>
 
         <div class="row justify-content-end mb-2 mr-1">
             <div class="col-xs-1 mr-1">
@@ -311,7 +311,7 @@
                 </a>
            </div>
             <div class="col-xs-1">
-                <a title="Adicionar producto" href="AgregarProducto.html" class="btn btn-primary btn-icon-split btn-sm">
+                <a title="Adicionar lista de compra" href="AgregarListaCompra.php" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                     </span>
@@ -323,7 +323,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Lista de productos</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Listas de compra</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -332,40 +332,47 @@
                     <tr>
                       <th>Id.</th>
                       <th>Nombre</th>
-                      <th>Categoría</th>
-                     
+                    
+                      <th>Precio</th>
+                      <th>Nombre Usuario</th>
+                      <th>Supermercado</th>
+                   
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                         <th>Id.</th>
                         <th>Nombre</th>
-                        <th>Categoría</th>
+                      
+                        <th>Precio</th>
+                        <th>Nombre Usuario</th>
+                        <th>Supermercado</th>
+                   
                     </tr>
                   </tfoot>
 
-                  <!-- SE LLENA CON LOS DATOS DE LA BD -->
-
+                   <!-- SE LLENA CON LOS DATOS DE LA BD -->
                   <tbody id="mitbody">
                     <tr>
                       <td>1</td>
-                      <td>Producto 1</td>
-                      <td>Quesos</td>
+                      <td>Lista 1</td>
+                    
+                      <td>672</td>
                      
+                      <td>Betty</td>
+                      <td>Gadis</td>
+                      
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Producto 2</td>
-                        <td>Carnes</td>
+                        <td>Lista 2</td>
+                        
+                        <td>500</td>
                        
+                        <td>Yanelis</td>
+                        <td>Eroski</td>
                     </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Producto 3</td>
-                        <td>Embutidos</td>
-                       
-                    </tr>
-                                  
+                   
                    
                   </tbody>
                 </table>
@@ -414,7 +421,7 @@
         <div class="modal-body">Selecciona "Salir" si estás listo para abandonar la sesión.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.html">Salir</a>
+          <a class="btn btn-primary" href="login.php">Salir</a>
         </div>
       </div>
     </div>
@@ -429,7 +436,7 @@
         <h6 class="modal-title">Confimar eliminación</h6>
       </div>
       <div class="modal-body">
-           ¿Seguro que desea eliminar el producto?
+           ¿Seguro que desea eliminar la lista?
            <button id="boton_modal" type="button"class="btn btn-sm">Si</button>
            <button type="button"class="btn btn-sm" data-dismiss="modal">No</button>
       </div>
@@ -446,34 +453,85 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title"> Editar Producto</h6>
+        <h6 class="modal-title"> Detalles de la Lista de la compra seleccionada</h6>
         <button type="button"class="btn btn-lg" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
         <form>
-          <div class="form-row">
+          <div class="form-row ">
             <div class="form-group col-md-6">
-              <label for="id_producto">Id.</label>
-              <input type="text" class="form-control campos_form" id="id_producto" disabled>
+              <label for="id_lista">Id.</label>
+              <input type="text" class="form-control campos_form" id="id_lista" disabled>
             </div>
             <div class="form-group col-md-6">
-              <label for="nombre_producto">Nombre</label>
-              <input type="text" class="form-control campos_form" id="nombre_producto" >
+              <label for="nombre_lista">Nombre</label>
+              <input type="text" class="form-control campos_form" id="nombre_lista" disabled>
+            </div>
+           
+        </div>
+          <div class="form-row ">
+            <div class="form-group col-md-6">
+              <label for="precio_lista">Precio</label>
+              <input type="text" id="precio_lista" class="form-control campos_form" disabled>
+
+          </div>
+            <div class="form-group col-md-6">
+              <label for="nombre_usuario">Nombre Usuario</label>
+              <input type="text" class="form-control campos_form" id="nombre_usuario" disabled>
+            </div>
+                       
+          </div>
+          <div class="form-row ">
+          <div class="form-group col-md-6">
+            <label for="nombre_supermercado">Supermercado</label>
+            <input type="text" id="nombre_supermercado " class="form-control campos_form" disabled>
+
+        </div>
+      </div>
+         
+          
+            <!-- LISTA DE LA COMPRA -->
+          <div class="form-row">
+          <div class="card shadow mb-4 col">
+              
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Productos</h6>
+              </div>
+             
+              
+              <div class="card-body">
+
+                <div class="table-responsive">
+                  <table id="tabla_productos_compra" class="table table-bordered"  width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Id.</th>
+                        <th>Nombre</th>
+                      
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Descuento</th>
+                     
+                      </tr>
+                    </thead>
+                   
+                    <tbody id="mitbodylista">
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="form-row">
-           
-            <div class="form-group col-md-6">
-              <label for="categoria_producto">Categoría</label>
-              <input type="text" class="form-control campos_form" id="categoria_producto" >
-            </div>
-         </div>
-           
-         
-         <div class="row justify-content-end">
 
-              <div class="col-xs-1 mr-1" id="boton_guardar"> <button type="submit" class="btn btn-primary" >Guardar</button></div>  
-              <div class="col-xs-1" > <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Cancelar</button></div> 
+          <div class="row justify-content-end">
+
+              
+              <div class="col-xs-1 mr-1"> 
+                <button type="button"class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+                 
+              </div> 
+               <!-- <div class="col-xs-1"> <button type="submit" class="btn btn-primary">Guardar</button></div>  -->
 
           </div>
         </form>
@@ -483,7 +541,6 @@
     </div>
 
   </div>
-</div>
 
   <!--Scripts personalizados-->
   
@@ -506,8 +563,9 @@
          for (let index = 0; index < fila.children.length; index++) {
              if(fila.children[index]==fila.lastElementChild)
              {
+                fila.innerHTML+='<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Ver" onclick=verElemento(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-eye"></i></a></td>';
                 
-                fila.innerHTML+='<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Editar" onclick=editarElemento(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-edit"></i></a></td>';
+                //fila.innerHTML+='<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Editar" onclick=editarElemento(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-edit"></i></a></td>';
                 fila.innerHTML+= '<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Eliminar" onclick=eliminarElemento(this) class="btn btn-primary btn-circle btn-sm"><i class="fas fa-trash"></i></a></td>';
                 
                 break;
@@ -534,17 +592,19 @@
 
 </script>
 
-
 <script>
 
-  //FUNCION PARA EDITAR UN ELEMENTO
+  //FUNCION PARA VER UNA LISTA
 
-  function editarElemento(td){
+  function verElemento(td){
 
+    
     $("#modal2").modal("show");
 
             
     fila=td.closest("tr");
+
+    //LLAMADA A BD PARA LLENAR LA TABLA DE PRODUCTOS DEL MODAL PASANDO EL ID DE LA LISTA que lo tengo en: fila.cells[0]
     
     
     var campos_form=document.getElementsByClassName("campos_form");
@@ -584,17 +644,6 @@
 
   }
   
-
-      document.getElementById("boton_guardar").addEventListener("click",function(e){
-
-        e.preventDefault();
-
-         //***LUEGO GUARDAR EN LA BD***
-    
-        $("#modal2").modal("hide");
-
-    
-  });
 
 }
 
