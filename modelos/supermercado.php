@@ -21,9 +21,9 @@ class Supermercado
     }
 
     //Actualiza un supermercado
-    function updateSupermercado($nombre, $direccion, $provincia, $codigo_postal, $latitud, $longitud, $cadena, $idsupermercado){
+    function updateSupermercado($nombre, $direccion, $provincia, $codigo_postal, $cadena, $idsupermercado){
         $tool = new Tools();
-        $sqlUpdate = "UPDATE supermercado set nombre = '$nombre',direccion = '$direccion' ,provincia = '$provincia', codigo_postal = '$codigo_postal', latitud = '$codigo_latitudpostal', cadena = '$cadena', where idsupermercado='$idsupermercado'";
+        $sqlUpdate = "UPDATE supermercado set nombre = '$nombre',direccion = '$direccion' ,provincia = '$provincia', codigo_postal = '$codigo_postal', cadena = '$cadena' where idsupermercado='$idsupermercado'";
         $result = $tool->insertData($sqlUpdate);
         return $result;
     }
@@ -37,3 +37,4 @@ class Supermercado
     }
 
 }
+

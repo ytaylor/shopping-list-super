@@ -12,6 +12,14 @@ session_start();
 $supermercados = new Supermercado();
 $lista_supermercados= $supermercados->getSupermercados(); 
 $_SESSION['supermercados']=$lista_supermercados;
+
+
+// Si quiero eliminar
+
+
+//Si quiero actualizar
+
+
 // Incluyendo el head and sidebar
 include 'templates/sidebar.php';
 ?>
@@ -53,6 +61,7 @@ include 'templates/sidebar.php';
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                    <th>Id</th>
                       <th>Nombre</th>
                       <th>Dirección</th>
                       <th>Provincia</th>
@@ -61,16 +70,7 @@ include 'templates/sidebar.php';
                       <th>Acciones</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Provincia</th>
-                        <th>Código Postal</th>
-                        <th>Cadena</th>
-                        <th>Acciones</th>
-                    </tr>
-                  </tfoot>
+                 
 
                   <!-- SE LLENA CON LOS DATOS DE LA BD -->
                   <tbody id="mitbody">
@@ -79,18 +79,13 @@ include 'templates/sidebar.php';
                         foreach ($_SESSION['supermercados'] as $item => $value) {
                             echo '
                             <tr>
+                            <td>' . $value['idsupermercado']. '</td>
                             <td>' . $value['nombre']. '</td>
                             <td>' . $value['direccion']. '</td>
                             <td>' . $value['provincia']. '</td>
                             <td>' . $value['codigo_postal']. '</td>
                             <td>' . $value['cadena']. '</td>
-                            <td style="text-align:center; padding-left:0; padding-right:0;">
-                              <a title="Editar" onclick=editarElemento(this) class="btn btn-primary btn-circle btn-sm" > 
-                              <i class="fas fa-edit"></i></a>
-                             
-                              <a title="Eliminar" onclick=eliminarElemento(this) class="btn btn-primary btn-circle btn-sm">
-                              <i class="fas fa-trash"></i></a>
-                            </td>
+
                             </tr>
                             '
                             ;
@@ -180,111 +175,105 @@ include 'templates/sidebar.php';
         <button type="button"class="btn btn-lg" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="id_mercado">Id.</label>
-              <input type="text" class="form-control campos_form" id="id_mercado" disabled>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="nombre_mercado">Nombre</label>
-              <input type="text" class="form-control campos_form" id="nombre_mercado" >
-            </div>
+       
+      <?php
+        echo '<form method="post" action="modelos/update_supermercado.php">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="id_mercado">Id.</label>
+            <input name="idsupermercado" type="text" class="form-control campos_form" id="idsupermercado">
           </div>
-          <div class="form-row">
-           
-            <div class="form-group col-md-6">
-              <label for="direccion_mercado">Dirección</label>
-              <input type="text" class="form-control campos_form" id="direccion_mercado" >
-            </div>
-            <div class="form-group col-md-6">
-              <label for="provincia_mercado">Provincia</label>
-              <select id="provincia_mercado" class="form-control campos_form">
-                  <option >---Seleccione una provincia---</option>
-                  <option  value="A Coruña">A Coruña</option>
-                  <option  value="Álava">Álava</option>
-                  <option  value="Albacete">Albacete</option>
-                  <option  value="Alicante">Alicante</option>
-                  <option value="Almería">Almería</option>
-                  <option  value="Asturias">Asturias</option>
-                  <option  value="Ávila">Ávila</option>
-                  <option value="Badajoz">Badajoz</option>
-                  <option value="Baleares">Baleares</option>
-                  <option value="Barcelona">Barcelona</option>
-                  <option value="Burgos">Burgos</option>
-                  <option value="Cáceres">Cáceres</option>
-                  <option value="Cádiz">Cádiz</option>
-                  <option value="Cantabria">Cantabria</option>
-                  <option value="Castellón">Castellón</option>
-                  <option value="Ciudad Real">Ciudad Real</option>
-                  <option value="Córdoba">Córdoba</option>
-                  <option  value="Cuenca">Cuenca</option>
-                  <option  value="Girona">Girona</option>
-                  <option value="Granada">Granada</option>
-                  <option value="Guadalajara">Guadalajara</option>
-                  <option  value="Gipuzkoa">Gipuzkoa</option>
-                  <option value="Huelva">Huelva</option>
-                  <option value="Huesca">Huesca</option>
-                  <option value="Jaén">Jaén</option>
-                  <option  value="La Rioja">La Rioja</option>
-                  <option value="Las Palmas">Las Palmas</option>
-                  <option  value="León">León</option>
-                  <option  value="Lérida">Lérida</option>
-                  <option  value="Lugo">Lugo</option>
-                  <option value="Madrid">Madrid</option>
-                  <option value="Málaga">Málaga</option>
-                  <option value="Murcia">Murcia</option>
-                  <option value="Navarra">Navarra</option>
-                  <option value="Ourense"></option>Ourense</option>
-                  <option value="Palencia">Palencia</option>
-                  <option value="Pontevedra">Pontevedra</option>
-                  <option value="Salamanca">Salamanca</option>
-                  <option value="Segovia">Segovia</option>
-                  <option  value="Sevilla">Sevilla</option>
-                  <option value="Soria">Soria</option>
-                  <option value="Tarragona">Tarragona</option>
-                  <option  value="Santa Cruz de Tenerife">Santa Cruz de Tenerife</option>
-                  <option  value="Teruel">Teruel</option>
-                  <option value="Toledo">Toledo</option>
-                  <option  value="Valencia">Valencia</option>
-                  <option value="Valladolid">Valladolid</option>
-                  <option value="Vizcaya">Vizcaya</option>
-                  <option value="Zamora">Zamora</option>
-                  <option  value="Zaragoza">Zaragoza</option>
-                  <option  value="Cdad. Autónoma Ceuta">Cdad. Autónoma Ceuta</option>
-                  <option value="Cdad. Autónoma Melilla">Cdad. Autónoma Melilla</option>
-              </select>
-            </div>
+          <div class="form-group col-md-6">
+            <label for="nombre_mercado">Nombre</label>
+            <input name="nombre" type="text" class="form-control campos_form" id="nombre" >
           </div>
+        </div>
+        <div class="form-row">
          
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="codigopostal_mercado">Código postal</label>
-              <input type="number" class="form-control campos_form" id="codigopostal_mercado">
-            </div>  
-            <div class="form-group col-md-6">
-              <label for="latitud">Latitud</label>
-              <input type="text" class="form-control campos_form" id="latitud">
-            </div>                    
-            
+          <div class="form-group col-md-6">
+            <label for="direccion_mercado">Dirección</label>
+            <input name="direccion" type="text" class="form-control campos_form" id="direccion" >
           </div>
+          <div class="form-group col-md-6">
+            <label for="provincia_mercado">Provincia</label>
+            <select name="provincia" id="provincia" class="form-control campos_form">
+                <option >---Seleccione una provincia---</option>
+                <option  value="A Coruña">A Coruña</option>
+                <option  value="Álava">Álava</option>
+                <option  value="Albacete">Albacete</option>
+                <option  value="Alicante">Alicante</option>
+                <option value="Almería">Almería</option>
+                <option  value="Asturias">Asturias</option>
+                <option  value="Ávila">Ávila</option>
+                <option value="Badajoz">Badajoz</option>
+                <option value="Baleares">Baleares</option>
+                <option value="Barcelona">Barcelona</option>
+                <option value="Burgos">Burgos</option>
+                <option value="Cáceres">Cáceres</option>
+                <option value="Cádiz">Cádiz</option>
+                <option value="Cantabria">Cantabria</option>
+                <option value="Castellón">Castellón</option>
+                <option value="Ciudad Real">Ciudad Real</option>
+                <option value="Córdoba">Córdoba</option>
+                <option  value="Cuenca">Cuenca</option>
+                <option  value="Girona">Girona</option>
+                <option value="Granada">Granada</option>
+                <option value="Guadalajara">Guadalajara</option>
+                <option  value="Gipuzkoa">Gipuzkoa</option>
+                <option value="Huelva">Huelva</option>
+                <option value="Huesca">Huesca</option>
+                <option value="Jaén">Jaén</option>
+                <option  value="La Rioja">La Rioja</option>
+                <option value="Las Palmas">Las Palmas</option>
+                <option  value="León">León</option>
+                <option  value="Lérida">Lérida</option>
+                <option  value="Lugo">Lugo</option>
+                <option value="Madrid">Madrid</option>
+                <option value="Málaga">Málaga</option>
+                <option value="Murcia">Murcia</option>
+                <option value="Navarra">Navarra</option>
+                <option value="Ourense"></option>Ourense</option>
+                <option value="Palencia">Palencia</option>
+                <option value="Pontevedra">Pontevedra</option>
+                <option value="Salamanca">Salamanca</option>
+                <option value="Segovia">Segovia</option>
+                <option  value="Sevilla">Sevilla</option>
+                <option value="Soria">Soria</option>
+                <option value="Tarragona">Tarragona</option>
+                <option  value="Santa Cruz de Tenerife">Santa Cruz de Tenerife</option>
+                <option  value="Teruel">Teruel</option>
+                <option value="Toledo">Toledo</option>
+                <option  value="Valencia">Valencia</option>
+                <option value="Valladolid">Valladolid</option>
+                <option value="Vizcaya">Vizcaya</option>
+                <option value="Zamora">Zamora</option>
+                <option  value="Zaragoza">Zaragoza</option>
+                <option  value="Cdad. Autónoma Ceuta">Cdad. Autónoma Ceuta</option>
+                <option value="Cdad. Autónoma Melilla">Cdad. Autónoma Melilla</option>
+            </select>
+          </div>
+        </div>
+       
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="codigopostal_mercado">Código postal</label>
+            <input name="codigo_postal" type="number" class="form-control campos_form" id="codigo_postal">
+          </div>  
+          <div class="form-group col-md-6">
+              <label for="cadena">Cadena</label>
+              <input name="cadena" type="text" class="form-control campos_form" id="cadena">
+            </div>                 
+          
+        </div>
 
-          <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="longitud">Longitud</label>
-                <input type="text" class="form-control campos_form" id="longitud">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="cadena">Cadena</label>
-                <input type="text" class="form-control campos_form" id="cadena">
-              </div>
-              
-            </div>
-          <div class="row justify-content-end">
-              <div class="col-xs-1 mr-1" id="boton_guardar"> <button type="submit" class="btn btn-primary" >Guardar</button></div>  
-              <div class="col-xs-1" > <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Cancelar</button></div> 
-          </div>
-        </form>
+      
+        <div class="row justify-content-end">
+            <div class="col-xs-1 mr-1" id="boton_guardar"> <button type="submit" class="btn btn-primary" >Guardar</button></div>  
+            <div class="col-xs-1" > <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Cancelar</button></div> 
+        </div>
+      </form>'; 
+      ?>
+      
           <!--end: Form-->
 
         </div>
@@ -293,7 +282,7 @@ include 'templates/sidebar.php';
   </div>
 </div>
 
-  <!--Scripts personalizados
+  <!--Scripts personalizados-->
   <script>
     //FUNCION PARA AÑADIR LOS BOTONES DE EDITAR Y ELIMINAR AL FINAL DE CADA FILA
     //Cojo el tbody
@@ -315,7 +304,7 @@ include 'templates/sidebar.php';
          }
         fila=fila.nextElementSibling;
      };
-</script>-->
+</script>
 
 <script>
   //FUNCION PARA ACTUALIZAR LA LISTA CADA VEZ QUE SEA NECESARIO : LLAMAR AL METODO QUE ME TRAE LAS LISTAS DE COMPRA
@@ -331,6 +320,7 @@ include 'templates/sidebar.php';
     $("#modal2").modal("show");   
     fila=td.closest("tr");
     var campos_form=document.getElementsByClassName("campos_form");
+    
     //Lleno los campos con los datos de la fila
     for (let index = 0; index <fila.children.length-2; index++) {
       if (campos_form[index].tagName=="INPUT") {
@@ -351,16 +341,17 @@ include 'templates/sidebar.php';
       }
 
     }
-
   }
-
-      document.getElementById("boton_guardar").addEventListener("click",function(e){
+     
+     /* document.getElementById("boton_guardar").addEventListener("click",function(e){
         e.preventDefault();
-         //***LUEGO GUARDAR EN LA BD***
+       
         $("#modal2").modal("hide");
-  });
+  });*/
+
 
 }
+
 
 </script>
 
