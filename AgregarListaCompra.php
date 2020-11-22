@@ -35,7 +35,11 @@ if(isset($_POST['listacompraguardar'])){
      
     }
 
+    //vaciar la lista
+    $_SESSION['arrayproductos']=[]; 
+    $_SESSION['total']=0;
   }
+
 
   echo'<script type="text/javascript">
   alert("Lista de la compra adicionada correctamente")
