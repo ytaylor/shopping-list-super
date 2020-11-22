@@ -96,7 +96,6 @@ include 'templates/sidebar.php';
                     </tr>
                   </thead>
                  
-
                   <!-- SE LLENA CON LOS DATOS DE LA BD -->
                   <tbody id="mitbody">
                   <?php
@@ -105,7 +104,7 @@ include 'templates/sidebar.php';
                             echo '
                             <tr>
                             <td>' . $value['idsupermercado']. '</td>
-                            <td>' . $value['nombre']. '</td>
+                            <td>' . $value['nombre_supermercado']. '</td>
                             <td>' . $value['direccion']. '</td>
                             <td>' . $value['provincia']. '</td>
                             <td>' . $value['codigo_postal']. '</td>
