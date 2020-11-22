@@ -18,18 +18,36 @@ class ListaCompra
         return $array;
     }
 
+      //Inserta un lista de la compra
+      function insertListaCompra($nombre, $precio_total, $idusuario, $idsupermercado){
+        $tool = new Tools();
+        $sqlUpdate = "INSERT INTO lista_compra(nombre, precio_total, idusuario, idsupermercado) values ('$nombre', '$precio_total', '$idusuario', '$idsupermercado')";
+                
+        $result = $tool->insertData($sqlUpdate);
+        return $result;
+    }
+
+    //productos_lista
+    function insertarProductosLista($idsupermercado, $idcompra, $idproducto){
+        $tool = new Tools();
+        $sqlUpdate = "INSERT INTO compra_productos(idsupermercado, idcompra, idproducto) values ('$idsupermercado', '$idcompra', '$idproducto')";
+       echo $sqlUpdate;     
+        $result = $tool->insertData($sqlUpdate);
+        return $result;
+    }
+
 
     //Elimina una lista de la compra 
     function deleteListaCompra( $idlistacompra){
         $tool = new Tools();
         $sqlDelete = "DELETE FROM lista_compra where idlista_compra='$idlistacompra'";
-        $result = $tool->insertData($sqlUpdateStock);
+        $result = $tool->insertData($sqlDelete);
         return $result;
     }
 
     //Productos de una lista de la compra
     function getProductosListaCompra($idlistacompra){
-        $sql = "SELECT * FROM compra_productos, supermercado, productos WHERE idcompra='$idlistacompra' and productos.idproductos = compra_productos.idproducto and supermercado.idsupermercado = compra_productos.idsupermercado"   ;
+        $sql = "SELECT * FROM compra_productos, supermercado, productos, productos_precio WHERE idcompra='$idlistacompra' and productos.idproductos = compra_productos.idproducto and supermercado.idsupermercado = compra_productos.idsupermercado and productos_precio.idproducto=productos.idproductos and productos_precio.idsupermercado=compra_productos.idsupermercado"    ;
         $tool = new Tools();
         $array = $tool->getArraySQL($sql);
         return $array;

@@ -10,6 +10,38 @@ session_start();
 
 // Incluyendo el head and sidebar
 include 'templates/sidebar.php';
+
+//adicionar una lista de la compra 
+if(isset($_POST['listacompraguardar'])){
+  $compra = new ListaCompra();
+
+  if(isset($_SESSION['arrayproductos'])) {
+    $productos = new Producto(); 
+
+    $total = 0; 
+    foreach ($_SESSION['arrayproductos'] as $item => $value2) {
+      $lista = $productos->getProductosBySupermercadoByID($_POST['idsupermercado'],$value2);
+      foreach ($lista as $item => $value3) {
+        $total = $total+$value3['precio'] - $value3['descuento'] ;
+      }
+    }
+
+    $idcompra = $compra->insertListaCompra($_POST['nombre'], $total, $_SESSION['idusuario'], $_POST['idsupermercado']); 
+    //guardar cada producto
+    $array = $_SESSION['arrayproductos'];
+    echo var_dump($array);
+    for ($i = 0; $i < count($_SESSION['arrayproductos']); $i++) {
+      $compra->insertarProductosLista($_POST['idsupermercado'], $idcompra, $array[$i]); 
+     
+    }
+
+  }
+
+  echo'<script type="text/javascript">
+  alert("Lista de la compra adicionada correctamente")
+  window.location.href="ListasCompra.php";
+  </script>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,11 +58,11 @@ include 'templates/sidebar.php';
             </div>
             <div class="card-body">
              
-                <form>
+            <form action="AgregarListaCompra.php" method="post">
                     <div class="form-row ">
                       <div class="form-group col-md-6">
                         <label for="nombre_lista">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_lista" required>
+                        <input name="nombre" type="text" class="form-control" id="nombre_lista" required>
                       </div>
                       <div class="form-group col-md-6">
                         <label for="select_mercado">Supermercado Preferente para la compra</label>
@@ -38,7 +70,6 @@ include 'templates/sidebar.php';
                         <?php
 
                         echo '
-                        <form action="AgregarListaCompra.php" method="post">
                         <select name="idsupermercado" id="select_mercado" class="form-control">
                         <option >---Seleccione un supermercado---</option>';
                         
@@ -49,7 +80,6 @@ include 'templates/sidebar.php';
                               }
                             }
                             
-                      echo '</form>'; 
                         ?>
                         </select>
                     </div>
@@ -134,7 +164,6 @@ include 'templates/sidebar.php';
                             </table>
                           </div>
                         </div>
-                      </div>
 
                             ';
                             
@@ -142,6 +171,7 @@ include 'templates/sidebar.php';
                           }
 
                       ?>
+                      </div>
 
                         
                     <div class="row justify-content-end">
@@ -153,7 +183,10 @@ include 'templates/sidebar.php';
                                 <span class="text">Cancelar</span>
                             </a>
                         </div> 
-                        <div class="col-xs-1"> <button type="submit" class="btn btn-primary">Guardar</button></div>  
+                        <div class="col-xs-1"> 
+                          <button name="listacompraguardar" type="submit" class="btn btn-primary">Guardar</button>
+                        </form>
+                        </div>  
 
                     </div>
                   </form>

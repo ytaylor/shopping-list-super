@@ -60,7 +60,7 @@ class Tools{
             return false;
         }
         else{
-            return true;
+            return $conexion -> insert_id;;
         }
     }
 

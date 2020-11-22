@@ -20,7 +20,7 @@ if(isset($_POST['eliminar'])){
 
       echo'<script type="text/javascript">
       alert("Lista de la compra eliminada correctamente")
-      window.location.href="ListaCompra.php";
+      window.location.href="ListasCompra.php";
       </script>';
 }
 
@@ -39,15 +39,6 @@ if(isset($_POST['ver'])){
 }
 
 
-//Agregar
-if(isset($_POST['agregar'])){
-  $supermercados-> insertSupermercado($_POST["nombre"], $_POST["direccion"], $_POST["provincia"], $_POST["codigo_postal"], $_POST["cadena"], $_POST["latitud"], $_POST["longitud"]); 
-
-  echo'<script type="text/javascript">
-  alert("Supermercado creado correctamente"); 
-  window.location.href="Supermercados.php";
-  </script>';
-}
 
 
 
