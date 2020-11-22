@@ -170,34 +170,7 @@ include 'templates/sidebar.php';
 </div>
 
    <!--Scripts personalizados-->
-   <script>
-
-    //FUNCION PARA AÑADIR UN BOTON ADICIONAR AL FINAL DE CADA FILA
-    
-    //Cojo el tbody
-    var tbody= document.getElementById("mitbody");
-
-    //Cojo la primera fila del tbody
-     var fila=tbody.firstElementChild;
-     
-    
-     //Me muevo por todas las filas del tbody, hasta que llegue a la ultima
-     while(fila!=null)
-     {
-        
-         //Me muevo por todos los hijos de la fila(los td)
-         for (let index = 0; index < fila.children.length; index++) {
-             if(fila.children[index]==fila.lastElementChild)
-             {
-                fila.innerHTML+='<td id="celda_agregar_producto" style="text-align:center; padding-left:0; padding-right:0;"><a title="Agregar" onclick=agregarProducto(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-plus"></i></a></td>';
-                break;
-             }
-         }
-        fila=fila.nextElementSibling;
-
-     };
-
-</script>
+ 
 
 <script>
 

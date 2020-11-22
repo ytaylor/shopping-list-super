@@ -60,7 +60,19 @@ class Tools{
             return false;
         }
         else{
-            return $conexion -> insert_id;;
+            return $conexion -> insert_id;
+        }
+    }
+
+    function deletetData($sql){
+        $conexion = $this->connectDB();
+        //generamos la consulta
+        if(!$result = mysqli_query($conexion, $sql)) {
+            die(mysqli_error($conexion));
+            return false;
+        }
+        else{
+            return true;
         }
     }
 

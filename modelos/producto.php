@@ -38,11 +38,19 @@ class Producto
         return $result;
     }
 
+    //Actualiza un producto
+    function insertarProductos($nombre, $categoria){
+        $tool = new Tools();
+        $sqlUpdate = "INSERT INTO productos(nombre_producto, categoria_producto) values ('$nombre', '$categoria')";
+        $result = $tool->insertData($sqlUpdate);
+        return $result;
+    }
+
     //Elimina un producto
     function deleteProducto( $idproductos){
         $tool = new Tools();
         $sqlDelete = "DELETE FROM productos where idproductos='$idproductos'";
-        $result = $tool->insertData($sqlUpdateStock);
+        $result = $tool->deletetData($sqlDelete);
         return $result;
     }
 

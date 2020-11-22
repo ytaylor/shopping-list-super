@@ -41,7 +41,7 @@ class ListaCompra
     function deleteListaCompra( $idlistacompra){
         $tool = new Tools();
         $sqlDelete = "DELETE FROM lista_compra where idlista_compra='$idlistacompra'";
-        $result = $tool->insertData($sqlDelete);
+        $result = $tool->deletetData($sqlDelete);
         return $result;
     }
 

@@ -14,37 +14,16 @@ $lista_productos= $productos->getProductos();
 $_SESSION['lista_productos']=$lista_productos;
 
 //Eliminar
-if(isset($_POST['eliminar'])){
-  $supermercados = new Supermercado();
-      $supermercados-> deleteSupermercado($_POST["id"]); 
+if(isset($_POST['eliminarproducto'])){
+      
+    $productos-> deleteProducto($_POST["idproducto"]); 
 
       echo'<script type="text/javascript">
-      alert("Supermercado eliminado correctamente")
-      window.location.href="Supermercados.php";
+      alert("Producto eliminado correctamente")
+      window.location.href="Productos.php";
       </script>';
+    
 }
-
-//Agregar
-if(isset($_POST['agregar'])){
-  $supermercados-> insertSupermercado($_POST["nombre"], $_POST["direccion"], $_POST["provincia"], $_POST["codigo_postal"], $_POST["cadena"], $_POST["latitud"], $_POST["longitud"]); 
-
-  echo'<script type="text/javascript">
-  alert("Supermercado creado correctamente"); 
-  window.location.href="Supermercados.php";
-  </script>';
-}
-
-
-//Update
-if(isset($_POST['update'])){
-  $supermercados-> updateSupermercado($_POST["nombre"], $_POST["direccion"], $_POST["provincia"], $_POST["codigo_postal"], $_POST["cadena"], $_POST["idsupermercado"]); 
-  echo'<script type="text/javascript">
-  alert("Supermercado actualizado correctamente"); 
-  window.location.href="Supermercados.php";
-  </script>';
-}
-
-
 
 // Incluyendo el head and sidebar
 include 'templates/sidebar.php';
@@ -111,8 +90,8 @@ include 'templates/sidebar.php';
                             <td>' . $value['nombre_producto']. '</td>
                             <td>' . $value['categoria_producto']. '</td>
                      
-                            <td style="text-align:center; padding-left:0; padding-right:0;"><form method="post" action="Supermercados.php"> <input hidden name="id" value="'. $value['idproductos'].'">
-                            <button name= "eliminar" type="submit" title="Eliminar" class="btn btn-primary btn-circle btn-sm"><i class="fas fa-trash"></i></button></form></td>
+                            <td style="text-align:center; padding-left:0; padding-right:0;"><form method="post" action="Productos.php"> <input hidden name="idproducto" value="'. $value['idproductos'].'">
+                            <button name= "eliminarproducto" type="submit" title="Eliminar" class="btn btn-primary btn-circle btn-sm"><i class="fas fa-trash"></i></button></form></td>
                             </tr>
                             '
                             ;
@@ -262,7 +241,6 @@ include 'templates/sidebar.php';
              {
                 
                 fila.innerHTML+='<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Editar" onclick=editarElemento(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-edit"></i></a></td>';
-                fila.innerHTML+= '<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Eliminar" onclick=eliminarElemento(this) class="btn btn-primary btn-circle btn-sm"><i class="fas fa-trash"></i></a></td>';
                 
                 break;
              }

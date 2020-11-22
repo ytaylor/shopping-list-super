@@ -1,3 +1,26 @@
+<?php
+//Incluimos todas las clases y funciones del proyecto
+include 'controlador/controladorGlobal.php';
+include "modelos/listacompra.php";
+include "modelos/producto.php";
+include "modelos/supermercado.php";
+include "modelos/usuarios.php";
+//Inicio sesion para guardar las variables que usaré durante todo el proyecto
+session_start();
+
+// Incluyendo el head and sidebar
+include 'templates/sidebar.php';
+if(isset($_POST['guardar_productos'])){
+  $productos = new Producto ();
+  $productos->insertarProductos($_POST['nombre'], $_POST['categoria']); 
+  //insertar los precios para cada mercado
+
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,22 +38,23 @@
             </div>
             <div class="card-body">
              
-                <form>
+            <?php
+            echo'
+                <form action="AgregarProducto.php" method="post">
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="nombre_producto">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_producto" required>
+                        <input name="nombre" type="text" class="form-control" id="nombre_producto" required>
                       </div>
                       <div class="form-group col-md-6">
                         <label for="categoria_producto">Categoría</label>
-                        <input type="text" class="form-control" id="categoria_producto" required>
+                        <input name="categoria" type="text" class="form-control" id="categoria_producto" required>
                       </div>
                     </div>
                    
                     <div class="form-row">
 
                   <!-- PARA LLENAR LOS DATOS DE LA LISTA DE SUPERMERCADOS (ID y Nombre) LLAMADA A BD -->
-                 
                     <div class="card shadow mb-4 col">
                         <div class="card-header py-3">
                           <h6 class="m-0 font-weight-bold text-primary">Precio por cada supermercado</h6>
@@ -49,52 +73,23 @@
                                 </tr>
                               </thead>
                               
-                              <tbody id="mitbody">
+                              <tbody id="mitbody">';
 
-                                <!-- LLAMADA A BD PARA CONSTRUIR LAS COLUMNAS DINAMICAMENTE-->
-
-                                <script>
-
-                                    var datos_ejemplo=[ {"id":0,
-                                                         "nombre":"Gadis"},
-                                                         {"id":1,
-                                                         "nombre":"Eroski"},
-                                                         {"id":2,
-                                                         "nombre":"Lidl"}                                          
-                                                      ]
-
-                                    
-                                    for (let index = 0; index < datos_ejemplo.length; index++) {
-                                        
-                                        var fila=document.createElement("tr")
-
-                                        var celda_id=document.createElement("td")                                      
-                                        var celda_nombre=document.createElement("td")
-
-                                        celda_id.innerHTML=datos_ejemplo[index].id
-                                        celda_nombre.innerHTML=datos_ejemplo[index].nombre
-
-                                        var celda_precio=document.createElement("td")
-                                        celda_precio.style.width="200px";
-                                        var celda_descuento=document.createElement("td")
-                                        celda_descuento.style.width="200px";
-
-                                        celda_precio.innerHTML="<input style='width:150px' type='text' class='form-control precio ' required> "
-                                        celda_descuento.innerHTML="<input style='width:150px' type='text' class='form-control descuento' required>"
-
-                                        fila.appendChild(celda_id)
-                                        fila.appendChild(celda_nombre)
-                                        fila.appendChild(celda_precio)
-                                        fila.appendChild(celda_descuento)
-
-                                        document.getElementById("mitbody").appendChild(fila)
-
-                                        
+                                if(isset($_SESSION['supermercados'])) {
+                                      foreach ($_SESSION['supermercados'] as $item => $value) {
+                                          echo '
+                                          <tr>
+                                          <td>' . $value['idsupermercado']. '</td>
+                                          <td>' . $value['nombre_supermercado']. '</td>
+                                          <td> <input name="precio'.$value['idsupermercado'].' " style="width:150px" type="text" class="form-control precio" required> </td>
+                                          <td> <input name="dscuento'.$value['idsupermercado'].'" style="width:150px" type="text" class="form-control descuento" required> </td>
+                                          </tr>
+                                          '
+                                          ;
+                                      }
                                     }
-                                   
-
-                                </script>
-                               
+                              
+                                    echo '
                               </tbody>
                             </table>
                           </div>
@@ -112,11 +107,12 @@
                                 <span class="text">Cancelar</span>
                             </a>
                         </div>  
-                        <div class="col-xs-1"> <button type="submit" class="btn btn-primary">Guardar</button></div> 
+                        <div class="col-xs-1"> <button name="guardar_productos" type="submit" class="btn btn-primary">Guardar</button></div> 
                         
 
                     </div>
-                  </form>
+                  </form>';
+                  ?>
 
             </div>
           </div>
@@ -148,7 +144,10 @@
 
   <!--Scripts personalizados-->
   
- 
+  <?php
+// Incluyendo el footer
+include 'templates/footer.php';
+?>
   
 
 </html>
