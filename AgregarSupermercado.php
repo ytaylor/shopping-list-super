@@ -30,7 +30,7 @@ include 'templates/sidebar.php';
 
               <?php
               echo '
-                <form method="post" action="modelos/crear_supermercado.php">
+                <form method="post" action="Supermercados.php">
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="nombre_mercado">Nombre</label>
@@ -136,7 +136,7 @@ include 'templates/sidebar.php';
                                 <span class="text">Cancelar</span>
                             </a>
                         </div>  
-                        <div class="col-xs-1"> <button type="submit" class="btn btn-primary">Guardar</button></div> 
+                        <div class="col-xs-1"> <button name="agregar" type="submit" class="btn btn-primary">Guardar</button></div> 
                         
 
                     </div>

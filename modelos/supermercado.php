@@ -41,9 +41,8 @@ class Supermercado
     function deleteSupermercado( $idsupermercado){
         $tool = new Tools();
         $sqlDelete = "DELETE FROM supermercado where idsupermercado='$idsupermercado'";
-        $result = $tool->insertData($sqlUpdateStock);
+        $result = $tool->insertData($sqlDelete);
         return $result;
     }
-
 }
 

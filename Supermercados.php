@@ -13,6 +13,39 @@ $supermercados = new Supermercado();
 $lista_supermercados= $supermercados->getSupermercados(); 
 $_SESSION['supermercados']=$lista_supermercados;
 
+//Eliminar
+if(isset($_POST['eliminar'])){
+  $supermercados = new Supermercado();
+      $supermercados-> deleteSupermercado($_POST["id"]); 
+
+      echo'<script type="text/javascript">
+      alert("Supermercado eliminado correctamente")
+      window.location.href="Supermercados.php";
+      </script>';
+}
+
+//Agregar
+if(isset($_POST['agregar'])){
+  $supermercados-> insertSupermercado($_POST["nombre"], $_POST["direccion"], $_POST["provincia"], $_POST["codigo_postal"], $_POST["cadena"], $_POST["latitud"], $_POST["longitud"]); 
+
+  echo'<script type="text/javascript">
+  alert("Supermercado creado correctamente"); 
+  window.location.href="Supermercados.php";
+  </script>';
+}
+
+
+//Update
+if(isset($_POST['update'])){
+  $supermercados-> updateSupermercado($_POST["nombre"], $_POST["direccion"], $_POST["provincia"], $_POST["codigo_postal"], $_POST["cadena"], $_POST["idsupermercado"]); 
+  echo'<script type="text/javascript">
+  alert("Supermercado actualizado correctamente"); 
+  window.location.href="Supermercados.php";
+  </script>';
+}
+
+
+
 // Incluyendo el head and sidebar
 include 'templates/sidebar.php';
 ?>
@@ -60,7 +93,6 @@ include 'templates/sidebar.php';
                       <th>Provincia</th>
                       <th>Código Postal</th>
                       <th>Cadena</th>
-                      <th>Acciones</th>
                     </tr>
                   </thead>
                  
@@ -78,7 +110,8 @@ include 'templates/sidebar.php';
                             <td>' . $value['provincia']. '</td>
                             <td>' . $value['codigo_postal']. '</td>
                             <td>' . $value['cadena']. '</td>
-
+                            <td style="text-align:center; padding-left:0; padding-right:0;"><form method="post" action="Supermercados.php"> <input hidden name="id" value="'. $value['idsupermercado'].'">
+                            <button name= "eliminar" type="submit" title="Eliminar" class="btn btn-primary btn-circle btn-sm"><i class="fas fa-trash"></i></button></form></td>
                             </tr>
                             '
                             ;
@@ -148,16 +181,8 @@ include 'templates/sidebar.php';
       </div>
       <div class="modal-body">
       ¿Seguro que desea eliminar el supermercado?
-        <?php
-        //Eliminar segun la selección
-        echo ''; 
-
-
-        ?>
-        <form method="post" action="modelos/delete_supermercado.php">
            <button id="boton_modal" type="submit"class="btn btn-sm">Si</button>
            <button type="button"c lass="btn btn-sm" data-dismiss="modal">No</button>
-        </form>
       </div>
       <div class="modal-footer">
         <button class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
@@ -181,7 +206,7 @@ include 'templates/sidebar.php';
       <div class="modal-body">
        
       <?php
-        echo '<form method="post" action="modelos/update_supermercado.php">
+        echo '<form method="post" action="Supermercados.php">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="id_mercado">Id.</label>
@@ -272,8 +297,8 @@ include 'templates/sidebar.php';
 
       
         <div class="row justify-content-end">
-            <div class="col-xs-1 mr-1" id="boton_guardar"> <button type="submit" class="btn btn-primary" >Guardar</button></div>  
-            <div class="col-xs-1" > <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Cancelar</button></div> 
+            <div class="col-xs-1 mr-1" id="boton_guardar"> <button name="update" type="submit" class="btn btn-primary" >Guardar</button></div>  
+            <div class="col-xs-1" > <button  type="button" class="btn btn-outline-primary" data-dismiss="modal" >Cancelar</button></div> 
         </div>
       </form>'; 
       ?>
@@ -301,7 +326,6 @@ include 'templates/sidebar.php';
              if(fila.children[index]==fila.lastElementChild)
              {
                 fila.innerHTML+='<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Editar" onclick=editarElemento(this) class="btn btn-primary btn-circle btn-sm" > <i class="fas fa-edit"></i></a></td>';
-                fila.innerHTML+= '<td style="text-align:center; padding-left:0; padding-right:0;"><a title="Eliminar" onclick=eliminarElemento(this) class="btn btn-primary btn-circle btn-sm"><i class="fas fa-trash"></i></a></td>';
                 break;
              }
             
