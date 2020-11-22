@@ -8,6 +8,28 @@ include "modelos/usuarios.php";
 //Inicio sesion para guardar las variables que usaré durante todo el proyecto
 session_start();
 
+//Obteniendo los productos del mercado seleccionado 
+//Porductos
+$productos = new Producto(); 
+$listaproductos = $productos->getProductos(); 
+$_SESSION['productos'] = $listaproductos; 
+
+if(isset($_POST['adicionar'])){
+  if(in_array($_POST['idproductos'], $_SESSION['arrayproductos'])){
+    echo'<script type="text/javascript">
+    alert("Este producto ya ha sido adicionado anteriormente");
+    </script>';
+
+  }else{
+    array_push($_SESSION['arrayproductos'] , $_POST['idproductos']); 
+    //echo count($_SESSION['arrayproductos']);
+    echo'<script type="text/javascript">
+    window.location.href="ListaProductos.php";
+    </script>';
+  }
+}
+
+
 // Incluyendo el head and sidebar
 include 'templates/sidebar.php';
 ?>
@@ -17,146 +39,64 @@ include 'templates/sidebar.php';
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Comparador Lista de la Compra</h1>
-          <p class="mb-4">Aquí puede indicar los datos necesarios para guardar una nueva lista de compra basado en los productos que ha adicionado anterioermente  Podrá ver el precio en cad supermercado</p>
+          <h1 class="h3 mb-2 text-gray-800">Lista de Productos</h1>
+          <p class="mb-4">Aquí puede seleccionar los productos para agregar a una nueva lista de compra.</p>
+
+      
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Agregar Lista de compra</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Agregar Productos a una lista de la compra</h6>
             </div>
             <div class="card-body">
              
-                <form>
-                    <div class="form-row ">
-                      <div class="form-group col-md-6">
-                        <label for="nombre_lista">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_lista" required>
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label for="select_mercado">Supermercado Preferente para la compra</label>
-                       
-                        <?php
-
-                        echo '
-                        <form action="AgregarListaCompra.php" method="post">
-                        <select name="idsupermercado" id="select_mercado" class="form-control">
-                        <option >---Seleccione un supermercado---</option>';
-                        
-                        if(isset($_SESSION['supermercados'])) {
-                              foreach ($_SESSION['supermercados'] as $item => $value) {
-                                 echo '<option value = '.$value['idsupermercado']. '>' . $value['nombre_supermercado']. '</option> '
-                                  ;
-                              }
-                            }
-                            
-                      echo '</form>'; 
-                        ?>
-                        </select>
-                    </div>
-                
-                    </div>
-                   
-                      <!-- LISTA DE LA COMPRA -->
-
                     <div class="card shadow mb-4">
-                        
                         <div class="card-header py-3">
-                          <h6 class="m-0 font-weight-bold text-primary">Lista de la Compra por supermercados</h6>
+                          <h6 class="m-0 font-weight-bold text-primary">Productos disponibles</h6>
                         </div>
-                       
-                      
-                      <?php
-                          if(isset($_SESSION['supermercados'])) {
-                            foreach ($_SESSION['supermercados'] as $item => $value) {
-
-                            echo '
-                            <div class="card-body">
-                             <!--TOTAL A IR SUMANDO A MEDIDA QUE AGREGUE UN PRODUCTO A LA COMPRA -->
-
-                            <div class="row justify-content-center">
-                            <div class="col-xs-2 mr-5" style="font-weight:bold; color:black; ">
-                                    <label>'.$value['nombre_supermercado'].' <span id="precio_total_lista"></span></label>
-                                </div>
-                              
-                            </div>
+                        <div class="card-body">
                           <div class="table-responsive">
-                            <table id="tabla_productos_compra" class="table table-bordered"  width="100%" cellspacing="0">
+                            <table id="tabla_productos_disponibles" class="table table-bordered"  width="100%" cellspacing="0">
                               <thead>
                                 <tr>
                                   <th>Id.</th>
                                   <th>Nombre</th>
-                                
                                   <th>Categoría</th>
-                                  <th>Precio</th>
-                                  <th>Descuento</th>
+                               
                                 </tr>
                               </thead>
-                              <tbody id="mitbodylista">
-                              ';
-                              //Obteniendo los valores de cada producto pro cada supermercado almacenado en la bd
-                              if(isset($_SESSION['arrayproductos'])) {
-                                $total = 0; 
-                                $productos = new Producto(); 
-                                foreach ($_SESSION['arrayproductos'] as $item => $value2) {
-                                  $lista = $productos->getProductosBySupermercadoByID($value['idsupermercado'],$value2);
-                                  $total = 0; 
-                                  foreach ($lista as $item => $value3) {
-                                    echo '
-                                    <tr>
-                                    <td>' . $value3['idproductos']. '</td>
-                                    <td>' . $value3['nombre_producto']. '</td>
-                                    <td>' . $value3['categoria_producto']. '</td>
-                                    <td>' . $value3['precio']. '</td>
-                                    <td>' . $value3['descuento']. '</td>
-                                    </tr>'
-                                    ;
-                                    $total = $total+$value3['precio'] -$value3['descuento'] ;
-                                    $_SESSION['total'] = $total; 
-                                  
-                                }
-
-                                
-                              }
-                              echo '
-                                  <tr>
-                                  <td>     </td>
-                                  <td>  TOTAL </td>
-                                  <td>         </td>
-                                  <td> </td>
-                                  <td>' .$_SESSION['total']. '</td>
-                                  </tr>
-                                '; 
-                            
-                            }
                               
-                             echo '
+                              <tbody id="mitbody">
+                              <?php
+                        if(isset($_SESSION['productos'])) {
+                            foreach ($_SESSION['productos'] as $item => $value) {
+                                echo '
+                                <tr>
+                                <td>' . $value['idproductos']. '</td>
+                                <td>' . $value['nombre_producto']. '</td>
+                                <td>' . $value['categoria_producto']. '</td>
+                                <td>
+                                <form method="post" action="ListaProductos.php"> 
+                                <input hidden name="idproductos" value="'. $value['idproductos'].'">
+                                <button name= "adicionar" type="submit" title="Adicionar" class="btn btn-primary btn-circle btn-sm"><i class="fas fa-plus"></i></button>
+
+                              </form>
+                              </td>
+                                </tr>
+                                '
+                                ;
+                            }
+                          }
+                    ?>
+                               
                               </tbody>
                             </table>
                           </div>
                         </div>
                       </div>
 
-                            ';
-                            
-                            }
-                          }
+                     
 
-                      ?>
-
-                        
-                    <div class="row justify-content-end">
-
-                        
-                        <div class="col-xs-1 mr-1"> 
-                            <a title="Cancelar" href="ListasCompra.php" class="btn btn-outline-primary">
-                           
-                                <span class="text">Cancelar</span>
-                            </a>
-                        </div> 
-                        <div class="col-xs-1"> <button type="submit" class="btn btn-primary">Guardar</button></div>  
-
-                    </div>
-                  </form>
             </div>
           </div>
 
@@ -165,6 +105,17 @@ include 'templates/sidebar.php';
 
       </div>
       <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Shopping List 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
     </div>
     <!-- End of Content Wrapper -->
 
@@ -195,7 +146,29 @@ include 'templates/sidebar.php';
     </div>
   </div>
 
+ <!-- Modal Comparación-->
+ <div id="modal2" class="modal fade" aria-hidden="true" style="display: none; ">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title"> Lista de Compra en otros supermercados</h6>
+        <button type="button"class="btn btn-lg" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" id="contenido_modal_comparar">
+
+
+       
+        </div>
+        <div class="modal-footer justify-content-end">
  
+            <div class="col-xs-1" > <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Cerrar</button></div> 
+
+        </div>
+    </div>
+
+  </div>
+</div>
+
    <!--Scripts personalizados-->
    <script>
 

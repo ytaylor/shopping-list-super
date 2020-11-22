@@ -62,13 +62,18 @@
         <i class="fas fa-tasks"></i>
         <span>Listas de la Compra</span></a>
     </li>
-
-     <!-- Nav Item - Supermercado -->
-     <li class="nav-item">
-      <a class="nav-link" href="Supermercados.php">
-        <i class="fas fa-store"></i>
-        <span>Supermercados</span></a>
+    <li class="nav-item">
+      <a class="nav-link" href="ListaProductos.php">
+        <i class="fas fa-tasks"></i>
+        <span>Listas de Productos</span></a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="AgregarListaCompra.php">
+        <i class="fas fa-tasks"></i>
+        <span>Guardar Lista</span></a>
+    </li>
+
+   
 
    
        <!-- Divider -->
@@ -87,7 +92,19 @@
           <a class="nav-link" href="Productos.php">
             <i class="fas fa-fw fa-cubes"></i>
             <span>Productos</span></a>
-        </li>';
+        </li>
+        
+        <!-- Nav Item - Supermercado -->
+        <li class="nav-item">
+         <a class="nav-link" href="Supermercados.php">
+           <i class="fas fa-store"></i>
+           <span>Supermercados</span></a>
+       </li>
+        '
+        
+    
+        
+        ;
       }
     }
     ?>

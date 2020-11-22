@@ -31,6 +31,9 @@ include "modelos/usuarios.php";
 //Inicio sesion para guardar las variables que usaré durante todo el proyecto
 session_start();
 
+$_SESSION['arrayproductos']=[];
+$_SESSION['total'] =0;
+
 //Login
 //Pregunto si los valores vienen por seyt para loguear al usuario
 if(isset($_GET["nombre"]) && isset($_GET["password"])){
